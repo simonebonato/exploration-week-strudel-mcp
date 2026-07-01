@@ -10,6 +10,28 @@ idea click for students.
 - **Owner:** Simone Bonato · **Audience:** students new to MCP/agents
 - **Hard requirement:** same MCP server working live across **three vendors' agent CLIs**.
 
+## Prerequisite: Node.js 22+ (this gives you `npm` and `npx` too)
+
+Everything below runs on Node.js. **You only install Node — `npm` and `npx` come bundled
+with it**, so there's nothing separate to install for those.
+
+| Platform | Easiest way to get Node 22+ |
+|---|---|
+| **macOS** | [nvm](https://github.com/nvm-sh/nvm): `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh \| bash` then `nvm install 22` — or `brew install node@22` — or the installer at [nodejs.org](https://nodejs.org) |
+| **Windows** | Installer (LTS) from [nodejs.org](https://nodejs.org), or `winget install OpenJS.NodeJS.LTS`, or [nvm-windows](https://github.com/coreybutler/nvm-windows) |
+| **Linux** | [nvm](https://github.com/nvm-sh/nvm) (as above), or your distro's package manager |
+
+Then check all three are present (Node **22 or newer**):
+
+```bash
+node -v    # e.g. v22.22.2  (must be 22+)
+npm -v     # e.g. 10.9.7
+npx -v     # e.g. 10.9.7
+```
+
+If `node -v` shows an older version, upgrade before continuing (with nvm: `nvm install 22 &&
+nvm use 22`). New to the terminal? On macOS open **Terminal**, on Windows open **PowerShell**.
+
 ## Quick start
 
 ```bash
