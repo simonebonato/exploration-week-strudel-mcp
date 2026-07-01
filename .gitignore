@@ -1,0 +1,13 @@
+# MCP server runtime output (auto-generated pattern store — not curated content)
+patterns/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Node
+node_modules/
+npm-debug.log*
