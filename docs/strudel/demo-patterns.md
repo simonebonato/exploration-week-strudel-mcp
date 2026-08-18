@@ -3,9 +3,15 @@
 A 5-step arc that builds a track from one kick to a full groove. Each step is a small,
 narratable change — perfect for "watch the agent add one layer at a time."
 
-**Validation key:** ✅local = passed `validate_pattern_local`; ✅runtime = passed
-`validate_pattern_runtime` (real strudel.cc); 🔊played = actually played and confirmed
-audible via `analyze` on 2026-07-01.
+```mermaid
+flowchart LR
+    P1["1️⃣ kick"] --> P2["2️⃣ + snare/hats"] --> P3["3️⃣ + bassline"] --> P4["4️⃣ + melody"] --> P5["5️⃣ full groove"]
+```
+
+> [!NOTE]
+> **Validation key:** ✅local = passed `validate_pattern_local` · ✅runtime = passed
+> `validate_pattern_runtime` (real strudel.cc) · 🔊played = actually played and confirmed
+> audible via `analyze` (2026-07-01).
 
 Paste any of these into <https://strudel.cc> (Ctrl/Cmd+Enter to play, Ctrl/Cmd+. to stop),
 or ask the agent for them by description.

@@ -1,78 +1,65 @@
-# Strudel MCP in Antigravity CLI (Google)  ✅ verified 2026-07-01
+# Strudel MCP in Antigravity CLI (Google)
 
-> **CLI command on this machine:** `agy` (`~/.local/bin/agy`). There is **no** `agy mcp`
-> subcommand — MCP servers are loaded from the config file below and surfaced inside a
-> session. Verified: `agy -p "list your strudel MCP tools"` returned all 26 tools.
+**Status: ✅ installed, signed in, all 26 tools listed (2026-07-01) — live audio pending.**
 
-> **Why Antigravity, not Gemini CLI?** As of **June 18, 2026**, Google replaced Gemini CLI
-> with **Antigravity CLI** for free/unpaid and Google One tiers. Antigravity CLI is the
-> free successor and is what a no-subscription Google account uses now. See
-> `docs/setup/gemini-cli.md` for the short history.
+> [!NOTE]
+> **Why Antigravity, not Gemini CLI?** On **2026-06-18** Google replaced Gemini CLI with
+> **Antigravity CLI** for free/unpaid and Google One tiers. It's what a no-subscription
+> Google account uses now — free, running Gemini **Flash**-class models (fine for MCP
+> tool-calling). History: [gemini-cli.md](./gemini-cli.md).
 
-## 0. Cost
-
-Free with a personal Google account (part of the Gemini→Antigravity transition). Free tier
-runs **Gemini Flash**-class models, which is plenty for MCP tool-calling / driving Strudel.
-
-## 1. One-time install (if not done yet)
+## Setup in 3 steps
 
 ```bash
+# 1. One-time install (skip if done)
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 npx playwright install chromium
+# ...plus Antigravity CLI itself: https://antigravity.google/docs  (command: agy)
 ```
 
-Then install Antigravity CLI itself (see Google's docs: <https://antigravity.google/docs>).
-
-## 2. Register the server
-
-Antigravity (CLI + IDE) share **one** MCP config file:
-
-```
-~/.gemini/config/mcp_config.json
-```
-
-Create it (and the `~/.gemini/config/` folder) if missing, then add:
+**2. Register the server** — no `agy mcp` subcommand exists; it reads a config file
+(shared by the CLI and the IDE). Create `~/.gemini/config/mcp_config.json` (and the
+folder) if missing:
 
 ```json
 {
   "mcpServers": {
-    "strudel": {
-      "command": "live-coding-music-mcp",
-      "args": []
-    }
+    "strudel": { "command": "live-coding-music-mcp", "args": [] }
   }
 }
 ```
 
-Rules:
-- `command` must be on PATH (`which live-coding-music-mcp`).
-- **No inline comments** — `mcp_config.json` is strict JSON.
-- Known rough edge (per community docs): env-var expansion for API keys has been flaky;
-  we don't need any keys here (Gemini API key is only for the optional `ai_assist` tool).
-
-## 3. Confirm & use
-
-Quick non-interactive check (what we used):
+**3. Confirm** with a non-interactive check:
 
 ```bash
 agy -p "Do you have an MCP server named 'strudel'? List its tools."
 # -> "Yes." + the full tool list (init, edit_pattern, playback, ...)
 ```
 
-Or just start an interactive session (`agy`) and prompt as with any client:
+> [!WARNING]
+> - `mcp_config.json` is **strict JSON** — no comments, no trailing commas.
+> - `command` must resolve on PATH (`which live-coding-music-mcp`).
+> - **Windows:** if the server won't start, use `"command": "cmd",
+>   "args": ["/c", "live-coding-music-mcp"]` ([why](./service-setup-summary.md)).
+> - No API key needed — a Gemini key is only for the optional `ai_assist` tool.
 
-- "Initialize Strudel."
-- "Play a four-on-the-floor kick and set tempo to 128."
-- "Stop."
+## Use it
 
-## Still to verify before the demo
+Start `agy` and prompt as with any client: "Initialize Strudel." · "Play a
+four-on-the-floor kick and set tempo to 128." · "Stop."
 
-- [x] Antigravity CLI installed + signed in (free Google account).  ✅ 2026-07-01
-- [x] `strudel` server loads and tools are listed.  ✅ 2026-07-01
-- [ ] A pattern actually **plays + makes sound** when driven from Antigravity (only the
-      tool listing is confirmed so far; audio was confirmed via Claude Code).
-- [ ] Confirm the free (Flash) tier reliably drives multi-step tool calls during a live run.
+> [!CAUTION]
+> **Free-tier quota is metered and can run out mid-session** (it happened during testing,
+> 2026-07-01 — see `logs/costs-and-quota.md`). It resets daily. Don't bet an
+> uninterrupted live demo on it.
+
+## Still to verify
+
+- [ ] A pattern actually **plays + makes sound** driven from Antigravity (only tool
+      listing confirmed so far).
+- [ ] Free (Flash) tier reliably drives **multi-step** tool calls in a live run.
 
 ## Reference
+
 - Antigravity MCP docs: <https://antigravity.google/docs/mcp>
-- Community guide (config format): <https://devengoratela.com/2026/05/configuring-mcp-servers-and-skills-for-antigravity-cli-and-ide/>
+- Community config guide: <https://devengoratela.com/2026/05/configuring-mcp-servers-and-skills-for-antigravity-cli-and-ide/>

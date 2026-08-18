@@ -71,7 +71,8 @@ n("0 2 4 6 4 2").scale("C:minor").sound("triangle")
 `n(...)` picks scale **degrees** (0 = root), `.scale("C:minor")` maps them to notes. Change
 `"C:minor"` to `"E:major"`, `"D:dorian"`, etc.
 
-> ⚠️ Gotcha we hit: the MCP's **local** validator (`validate_pattern_local`) doesn't
+> [!WARNING]
+> Gotcha we hit: the MCP's **local** validator (`validate_pattern_local`) doesn't
 > implement `.scale()` and will wrongly report an error. The **real** strudel.cc runtime
 > supports it fine — verify scale/advanced patterns with `validate_pattern_runtime` or by
 > just playing them. See `logs/install-log.md`.

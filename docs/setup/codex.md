@@ -1,67 +1,54 @@
-# Strudel MCP in Codex (OpenAI Codex CLI)  ✅ verified 2026-07-01
+# Strudel MCP in Codex (OpenAI)
 
-> Verified on **codex-cli 0.137.0**: `codex mcp add` worked and `codex mcp list` shows
-> `strudel` as `enabled`. Live *audio* from Codex not yet exercised (audio confirmed via
-> Claude Code) — see `logs/todo.md`, slice 3.
+**Status: ✅ registered & `enabled` on codex-cli 0.137.0 (2026-07-01) — live audio pending.**
 
-## 1. One-time install (if not done yet)
+## Setup in 3 steps
 
 ```bash
+# 1. One-time install (skip if done)
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 npx playwright install chromium
-```
 
-## 2. Register the server with Codex
-
-**Option A — command:**
-
-```bash
+# 2. Register the server (note the -- separator)
 codex mcp add strudel -- live-coding-music-mcp
+
+# 3. Confirm
+codex mcp list           # expect: strudel ... enabled
 ```
 
-**Option B — edit `~/.codex/config.toml`** (or a project-scoped `.codex/config.toml`):
+Alternative to step 2 — edit `~/.codex/config.toml` (or a project-scoped
+`.codex/config.toml`) directly:
 
 ```toml
 [mcp_servers.strudel]
 command = "live-coding-music-mcp"
-# args = []                 # none needed
-# startup_timeout_sec = 20  # bump if the browser is slow to launch
+# startup_timeout_sec = 20   # bump if the browser is slow to launch
 ```
 
-> Note the underscore: Codex uses `[mcp_servers.<name>]` (not `mcpServers`).
+> [!NOTE]
+> Codex uses `[mcp_servers.<name>]` with an **underscore** — not `mcpServers` like
+> JSON-based clients.
 
-## 3. Confirm
+> [!WARNING]
+> **On this machine** `~/.codex/config.toml` is a symlink into the dotfiles repo
+> (`~/dotfiles/ai/codex/config.toml`) — `codex mcp add` writes there. Review before
+> committing dotfiles, or use a project-scoped `.codex/config.toml` instead.
 
-```bash
-codex mcp list
-```
+## Use it
 
-Expected (verified):
-
-```
-Name     Command                Args  Env  Cwd  Status   Auth
-strudel  live-coding-music-mcp  -     -    -    enabled  Unsupported
-```
-
-Then start Codex and ask it to initialize Strudel and play a pattern.
-
-> ⚠️ On this machine `~/.codex/config.toml` is a **symlink into the dotfiles repo**
-> (`~/dotfiles/ai/codex/config.toml`), so `codex mcp add` writes the `[mcp_servers.strudel]`
-> block there. Review/commit that dotfile deliberately. To keep dotfiles clean instead, put
-> the block in a project-scoped `.codex/config.toml`.
-
-## 4. Use it
-
-Same prompts as any client: "Initialize Strudel", "play a kick pattern", "set tempo 128",
+Same prompts as any client — "Initialize Strudel", "play a kick pattern", "set tempo 128",
 "stop". Codex calls the same MCP tools (`init`, `edit_pattern`, `playback`, ...).
 
-## Troubleshooting / to verify
+## Troubleshooting
 
-- [ ] Confirm the installed Codex version supports `codex mcp add` (older builds only read
-      `config.toml`).
-- [ ] If tools don't load, restart Codex and re-check `~/.codex/config.toml`.
-- [ ] Browser audio needs a user gesture — click once in the Chromium window if silent.
+| Symptom | Fix |
+| --- | --- |
+| Tools don't load | Restart Codex; re-check `~/.codex/config.toml` |
+| Windows: server won't start | Use `command = "cmd"`, `args = ["/c", "live-coding-music-mcp"]` ([why](./service-setup-summary.md)) |
+| Browser opens, **no sound** | Click once inside the Chromium window (audio needs a user gesture) |
+| `codex mcp add` unknown | Older Codex builds only read `config.toml` — use the TOML block above |
 
 ## Reference
+
 - Codex MCP docs: <https://developers.openai.com/codex/mcp>
 - Codex config reference: <https://developers.openai.com/codex/config-reference>
