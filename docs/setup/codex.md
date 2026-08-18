@@ -36,8 +36,17 @@ command = "live-coding-music-mcp"
 
 ## Use it
 
-Same prompts as any client — "Initialize Strudel", "play a kick pattern", "set tempo 128",
-"stop". Codex calls the same MCP tools (`init`, `edit_pattern`, `playback`, ...).
+> [!IMPORTANT]
+> Tools load at **session start** → start a **NEW** Codex session after registering.
+
+Then just ask:
+
+| You type | What happens |
+| --- | --- |
+| "Initialize Strudel." | Chromium opens at strudel.cc (`init`) |
+| "Play a four-on-the-floor kick." | pattern written + played (`edit_pattern`, `playback`) |
+| "Add a hi-hat and set the tempo to 128." | layer added (`edit_pattern`, `set_tempo`) |
+| "Stop." | silence (`playback`) |
 
 ## Troubleshooting
 

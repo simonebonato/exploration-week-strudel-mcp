@@ -45,8 +45,14 @@ agy -p "Do you have an MCP server named 'strudel'? List its tools."
 
 ## Use it
 
-Start `agy` and prompt as with any client: "Initialize Strudel." · "Play a
-four-on-the-floor kick and set tempo to 128." · "Stop."
+Start an interactive session with `agy`, then just ask:
+
+| You type | What happens |
+| --- | --- |
+| "Initialize Strudel." | Chromium opens at strudel.cc (`init`) |
+| "Play a four-on-the-floor kick." | pattern written + played (`edit_pattern`, `playback`) |
+| "Add a hi-hat and set the tempo to 128." | layer added (`edit_pattern`, `set_tempo`) |
+| "Stop." | silence (`playback`) |
 
 > [!CAUTION]
 > **Free-tier quota is metered and can run out mid-session** (it happened during testing,
