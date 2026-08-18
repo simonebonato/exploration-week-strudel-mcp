@@ -8,6 +8,7 @@ Windows dry-run, rehearsal). Don't ship this to students until each row has been
 | --- | --- | --- |
 | Chromium window closed / crashed mid-session | Ask the agent: "Initialize Strudel again" (`init` relaunches the browser) | ⬜ to verify |
 | Browser open, pattern playing, **no sound** | Click once inside the Chromium window (audio needs a user gesture); check OS volume/output device | ⬜ to verify |
+| Agent changed the code, **music didn't change** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) | ✅ hit + fixed 2026-08-18 |
 | Client shows server **not connected** | `which live-coding-music-mcp` (Win: `where`); reinstall `@4.0.0` if missing; restart the client (tools load at session start) | ⬜ to verify |
 | Windows: server fails to spawn at all | `.cmd` shim issue → re-register wrapped in `cmd /c` (see [service-setup-summary](./service-setup-summary.md)) | ⬜ to verify |
 | Antigravity free quota exhausted | Expected failure mode (hit 2026-07-01). Backup plan TBD at 2026-08-19 meeting — see `logs/meeting-2026-08-19-open-failure-points.md` | ⬜ decision pending |

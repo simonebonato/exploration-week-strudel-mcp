@@ -62,6 +62,7 @@ Then just ask:
 | `not Connected` in `mcp list` | `which live-coding-music-mcp` → reinstall if missing |
 | Windows: server won't start | Register as `claude mcp add strudel -- cmd /c live-coding-music-mcp` ([why](./service-setup-summary.md)) |
 | Browser opens, **no sound** | Click once inside the Chromium window (audio needs a user gesture) |
+| Code changed, **music didn't** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) |
 | Remove it | `claude mcp remove strudel` |
 
 ## Reference

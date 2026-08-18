@@ -64,6 +64,14 @@ More references:
 
 ## Good to know
 
+> [!TIP]
+> **Code changed but the music didn't?** The agent edits the code in the browser, but
+> sometimes the new version isn't applied to the audio automatically. Press **`update`**
+> (top right of the strudel.cc window, or Ctrl/Cmd+Enter in the editor) to make the
+> current code audible:
+>
+> ![The update button in the strudel.cc REPL, top right](../assets/strudel-update-button.png)
+
 > [!WARNING]
 > - Each agent starts its **own** server + **own** Chromium window → run **one agent at a
 >   time**.

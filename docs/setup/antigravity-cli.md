@@ -54,6 +54,10 @@ Start an interactive session with `agy`, then just ask:
 | "Add a hi-hat and set the tempo to 128." | layer added (`edit_pattern`, `set_tempo`) |
 | "Stop." | silence (`playback`) |
 
+> [!TIP]
+> **Code changed but the music didn't?** Press **`update`** top right in the strudel.cc
+> window (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png).
+
 > [!CAUTION]
 > **Free-tier quota is metered and can run out mid-session** (it happened during testing,
 > 2026-07-01 — see `logs/costs-and-quota.md`). It resets daily. Don't bet an

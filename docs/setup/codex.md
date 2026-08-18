@@ -67,6 +67,7 @@ Then just ask:
 | Tools don't load | Restart Codex; re-check `~/.codex/config.toml` |
 | Windows: server won't start | Use `command = "cmd"`, `args = ["/c", "live-coding-music-mcp"]` ([why](./service-setup-summary.md)) |
 | Browser opens, **no sound** | Click once inside the Chromium window (audio needs a user gesture) |
+| Code changed, **music didn't** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) |
 | `codex mcp add` unknown | Older Codex builds only read `config.toml` — use the TOML block above |
 
 ## Reference
