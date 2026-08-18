@@ -65,10 +65,23 @@ Then just ask:
 | Symptom | Fix |
 | --- | --- |
 | Tools don't load | Restart Codex; re-check `~/.codex/config.toml` |
-| Windows: server won't start | Use `command = "cmd"`, `args = ["/c", "live-coding-music-mcp"]` ([why](./service-setup-summary.md)) |
+| Windows: server won't start | Launch it through the Windows shell — see [🪟 Windows note](#-windows-if-the-server-wont-start) below |
 | Browser opens, **no sound** | Click once inside the Chromium window (audio needs a user gesture) |
 | Code changed, **music didn't** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) |
 | `codex mcp add` unknown | Older Codex builds only read `config.toml` — use the TOML block above |
+
+### 🪟 Windows: if the server won't start
+
+On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` script, not
+a real program. Some MCP clients can't launch `.cmd` files directly, so you launch it
+*through* the Windows shell (`cmd /c ...`) instead. Your `config.toml` block then looks
+like this:
+
+```toml
+[mcp_servers.strudel]
+command = "cmd"
+args = ["/c", "live-coding-music-mcp"]
+```
 
 ## Reference
 

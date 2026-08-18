@@ -60,10 +60,22 @@ Then just ask:
 | --- | --- |
 | Tools don't appear | Restart Claude Code (tools load at session start) |
 | `not Connected` in `mcp list` | `which live-coding-music-mcp` → reinstall if missing |
-| Windows: server won't start | Register as `claude mcp add strudel -- cmd /c live-coding-music-mcp` ([why](./service-setup-summary.md)) |
+| Windows: server won't start | Launch it through the Windows shell — see [🪟 Windows note](#-windows-if-the-server-wont-start) below |
 | Browser opens, **no sound** | Click once inside the Chromium window (audio needs a user gesture) |
 | Code changed, **music didn't** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) |
 | Remove it | `claude mcp remove strudel` |
+
+### 🪟 Windows: if the server won't start
+
+On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` script, not
+a real program. Some MCP clients can't launch `.cmd` files directly, so you launch it
+*through* the Windows shell (`cmd /c ...`) instead. Remove the old entry and re-register:
+
+```powershell
+claude mcp remove strudel
+claude mcp add strudel -- cmd /c live-coding-music-mcp
+claude mcp list        # expect: strudel ... ✔ Connected
+```
 
 ## Reference
 

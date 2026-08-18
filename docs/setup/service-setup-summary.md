@@ -36,16 +36,16 @@ The global bin `live-coding-music-mcp` must be on PATH:
 > retry. 🪟
 
 > [!IMPORTANT]
-> **Windows `.cmd` gotcha** — the classic *"works on Mac, fails on Windows"* MCP failure:
-> the npm bin is a `.cmd` shim, and some MCP clients **cannot spawn `.cmd` files** as stdio
-> servers. If a client shows the server failed / not connected on Windows, register it
-> wrapped in `cmd /c`: 🪟
+> **Windows `.cmd` gotcha** — the classic *"works on Mac, fails on Windows"* MCP failure.
+> On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` script,
+> not a real program — and some MCP clients **cannot launch `.cmd` files** directly. The
+> fix is always the same idea: launch it *through* the Windows shell (`cmd /c ...`). 🪟
 >
-> | Client | Windows-safe registration |
-> | --- | --- |
-> | Claude Code | `claude mcp add strudel -- cmd /c live-coding-music-mcp` |
-> | Codex (`config.toml`) | `command = "cmd"` · `args = ["/c", "live-coding-music-mcp"]` |
-> | Antigravity (`mcp_config.json`) | `"command": "cmd", "args": ["/c", "live-coding-music-mcp"]` |
+> | Client | Windows-safe registration | Full example |
+> | --- | --- | --- |
+> | Claude Code | `claude mcp add strudel -- cmd /c live-coding-music-mcp` | [guide](./claude-code.md#-windows-if-the-server-wont-start) |
+> | Codex (`config.toml`) | `command = "cmd"` · `args = ["/c", "live-coding-music-mcp"]` | [guide](./codex.md#-windows-if-the-server-wont-start) |
+> | Antigravity (`mcp_config.json`) | `"command": "cmd", "args": ["/c", "live-coding-music-mcp"]` | [guide](./antigravity-cli.md#-windows-if-the-server-wont-start) |
 
 ## 2. Per-service registration
 

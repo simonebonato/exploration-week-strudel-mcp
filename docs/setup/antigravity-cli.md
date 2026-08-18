@@ -50,9 +50,25 @@ agy -p "Do you have an MCP server named 'strudel'? List its tools."
 > [!WARNING]
 > - `mcp_config.json` is **strict JSON** — no comments, no trailing commas.
 > - `command` must resolve on PATH (`which live-coding-music-mcp`).
-> - **Windows:** if the server won't start, use `"command": "cmd",
->   "args": ["/c", "live-coding-music-mcp"]` ([why](./service-setup-summary.md)).
 > - No API key needed — a Gemini key is only for the optional `ai_assist` tool.
+
+### 🪟 Windows: if the server won't start
+
+On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` script, not
+a real program. Some MCP clients can't launch `.cmd` files directly, so you launch it
+*through* the Windows shell (`cmd /c ...`) instead. Your `mcp_config.json` then looks
+like this:
+
+```json
+{
+  "mcpServers": {
+    "strudel": {
+      "command": "cmd",
+      "args": ["/c", "live-coding-music-mcp"]
+    }
+  }
+}
+```
 
 ## Use it
 
