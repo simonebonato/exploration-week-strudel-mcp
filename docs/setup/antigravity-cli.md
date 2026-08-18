@@ -8,9 +8,6 @@
 > with **Antigravity CLI** for free/unpaid and Google One tiers. Antigravity CLI is the
 > free successor and is what a no-subscription Google account uses now. See
 > `docs/setup/gemini-cli.md` for the short history.
->
-> Written from official + community docs. **Not yet installed on this machine** — must be
-> verified live before the session (`logs/todo.md`, slice 4).
 
 ## 0. Cost
 
@@ -20,7 +17,7 @@ runs **Gemini Flash**-class models, which is plenty for MCP tool-calling / drivi
 ## 1. One-time install (if not done yet)
 
 ```bash
-npm install -g @williamzujkowski/live-coding-music-mcp
+npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 npx playwright install chromium
 ```
 

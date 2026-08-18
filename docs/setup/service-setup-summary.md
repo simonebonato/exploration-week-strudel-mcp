@@ -19,7 +19,7 @@ Windows machine before the event.
 ## 1. One-time install (both platforms — same commands)
 
 ```bash
-npm install -g @williamzujkowski/live-coding-music-mcp
+npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 npx playwright install chromium
 ```
 
@@ -30,6 +30,13 @@ npx playwright install chromium
   downloads.
 - **Windows only:** no extra system deps needed (unlike Linux). If Chromium fails to launch,
   install the [VC++ redistributable] and retry. 🪟
+- **Windows `.cmd` gotcha (the classic "works on Mac, fails on Windows" MCP failure):** the
+  npm global bin is a `.cmd` shim (`live-coding-music-mcp.cmd`), and some MCP clients cannot
+  spawn `.cmd` files directly as stdio servers. If a client shows the server as failed/not
+  connected on Windows, register it wrapped in `cmd /c`, e.g.: 🪟
+  - Claude Code: `claude mcp add strudel -- cmd /c live-coding-music-mcp`
+  - Codex `config.toml`: `command = "cmd"`, `args = ["/c", "live-coding-music-mcp"]`
+  - Antigravity `mcp_config.json`: `"command": "cmd", "args": ["/c", "live-coding-music-mcp"]`
 
 ---
 

@@ -36,7 +36,7 @@ nvm use 22`). New to the terminal? On macOS open **Terminal**, on Windows open *
 
 ```bash
 # 1. Install the MCP server + the browser it drives (Node 22+ required)
-npm install -g @williamzujkowski/live-coding-music-mcp
+npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 npx playwright install chromium
 
 # 2. Register it with your agent (pick one)

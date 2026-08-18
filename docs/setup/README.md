@@ -6,14 +6,15 @@ practical core of the student session.
 ## The big idea
 
 You run a small local program (the **MCP server**). Your AI agent (Claude Code, Codex, or
-Gemini CLI) talks to it. The server drives a real **Chromium browser** pointed at
+Antigravity CLI) talks to it. The server drives a real **Chromium browser** pointed at
 [strudel.cc](https://strudel.cc/), typing music code and pressing play. So when you ask the
 agent for "a techno beat," a browser window makes actual sound.
 
 ```
 You  ─▶  Agent CLI  ─▶  MCP server  ─▶  Chromium ─▶  strudel.cc ─▶ 🔊 sound
-        (Claude Code /   (live-coding-      (Playwright)
-         Codex / Gemini)  music-mcp)
+        (Claude Code /    (live-coding-     (Playwright)
+         Codex /           music-mcp)
+         Antigravity)
 ```
 
 Same server, three different agents. Only the *way you register the server* differs.
@@ -31,7 +32,7 @@ Same server, three different agents. Only the *way you register the server* diff
 ### One-time install (do this once per machine)
 
 ```bash
-npm install -g @williamzujkowski/live-coding-music-mcp
+npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 npx playwright install chromium
 ```
 
@@ -45,9 +46,9 @@ npx playwright install chromium
 
 Three different vendors, same server:
 
-- **Anthropic** → [Claude Code](./claude-code.md) — ✅ verified connected
-- **OpenAI** → [Codex](./codex.md) — ✅ registered (`enabled`), live play pending
-- **Google** → [Antigravity CLI](./antigravity-cli.md) — ⏳ pending (successor to Gemini CLI)
+- **Anthropic** → [Claude Code](./claude-code.md) — ✅ verified, audio proven
+- **OpenAI** → [Codex](./codex.md) — ✅ registered (`enabled`), live audio pending
+- **Google** → [Antigravity CLI](./antigravity-cli.md) — ✅ tools listed, live audio pending
   - [Gemini CLI](./gemini-cli.md) — ⚠️ deprecated for free accounts (June 18, 2026)
 
 **Want a free / no-subscription setup (for students)?** →

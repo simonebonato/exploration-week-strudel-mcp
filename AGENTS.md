@@ -1,4 +1,4 @@
-# CLAUDE.md — Strudel MCP Exploration
+# AGENTS.md — Strudel MCP Exploration
 
 Durable project facts. Read this first.
 

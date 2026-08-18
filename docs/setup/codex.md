@@ -7,7 +7,7 @@
 ## 1. One-time install (if not done yet)
 
 ```bash
-npm install -g @williamzujkowski/live-coding-music-mcp
+npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 npx playwright install chromium
 ```
 

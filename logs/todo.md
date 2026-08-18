@@ -49,13 +49,30 @@ Status legend: [ ] todo · [~] in progress · [x] done · [!] blocked
 
 ## Slice 6 — Rehearsal + recovery
 - [ ] Full dry-run of the session flow, on the actual demo machine, in each client
-- [ ] Document rough edges hit + quick recovery steps
+- [ ] Fill in docs/setup/recovery-playbook.md (stub created 2026-08-18) as failures are hit
 - [ ] Decide the exact live script (what to type, expected sound at each step)
+
+## Slice 7 — Hands-on workshop format (decided 2026-08-18)
+Decisions: students hands-on on own laptops (mixed OS) · pre-work install + on-day check ·
+3-client support = coverage of whatever students bring · missions + finale showcase ·
+last mission rung = MCP Inspector / "what else could MCP drive?"
+- [ ] Windows dry-run on a real machine: Node → server@4.0.0 → client → Chromium → sound;
+      confirm/refine the `cmd /c` note in service-setup-summary.md
+- [ ] Audio parity: play a pattern from Codex and from Antigravity (coverage, not show)
+- [ ] Write the pre-work email + one-page student cheat sheet (install, register, verify,
+      first prompts, "no sound? click the browser" fix)
+- [ ] Design the mission ladder (from demo-patterns.md arc) + finale showcase logistics
+      (headphones rule? room audio?)
+- [ ] Rehearse the MCP Inspector segment (`npx @modelcontextprotocol/inspector
+      live-coding-music-mcp`)
+- [ ] 2026-08-19 colleague meeting: student "brain" + quota backup plan — see
+      logs/meeting-2026-08-19-open-failure-points.md
 
 ## Open questions to resolve before the session
 - [ ] Which machine hosts the demo? (verify audio activation there)
 - [x] Is Codex CLI installed? Yes — 0.137.0, strudel registered.
 - [x] Is Gemini CLI installed? No — and it's deprecated for free tier → Antigravity CLI.
-- [ ] Install + sign into Antigravity CLI (free Google account).
+- [x] Install + sign into Antigravity CLI (free Google account). ✅ 2026-07-01
 - [ ] Do we want the `ai_assist` tool (needs a Gemini API key)? Optional.
-- [ ] What should STUDENTS install themselves vs. just watch? (shapes docs/setup)
+- [x] What should STUDENTS install themselves vs. just watch? → hands-on, pre-work install
+      (2026-08-18). Open follow-up: which model/account per student → 08-19 meeting.
