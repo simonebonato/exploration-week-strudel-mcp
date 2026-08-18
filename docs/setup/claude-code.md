@@ -1,6 +1,12 @@
 # Strudel MCP in Claude Code
 
-**Status: ✅ verified 2026-07-01 — including real audio end-to-end.**
+**Status: ✅ verified — full student path (install → register → play) re-tested 2026-08-18.**
+
+> [!TIP]
+> **Model choice matters for music quality.** Tested 2026-08-18: Sonnet at the *lowest*
+> effort setting is fast but sometimes writes incorrect Strudel code; higher effort is
+> slower but noticeably more accurate. For the workshop, prefer the default effort (check
+> with `/model`) — speed is not the bottleneck, wrong-sounding patterns are.
 
 ## Setup in 3 steps
 

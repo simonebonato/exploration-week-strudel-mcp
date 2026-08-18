@@ -144,3 +144,20 @@ Gotchas learned:
   gpt-5.4, gpt-5.4-mini, gpt-5.5. Used gpt-5.4-mini.
 - These sandbox tests cover **registration + spawn + tools**, not audio — the browser/
   sound leg still needs the manual per-client test.
+
+---
+
+## 2026-08-18 — Manual student-path test, leg 1/3: Claude Code
+
+Full fresh-student run (wipe → install @4.0.0 → register per docs → 6-step play test,
+from a neutral folder): **worked extremely well ✅** — install, registration, audio,
+layering, tempo, stop.
+
+Finding — **model/effort tradeoff**: Sonnet at lowest effort is faster but sometimes
+writes incorrect Strudel code (annoying mid-demo); higher effort is slower but more
+accurate. → Tip added to docs/setup/claude-code.md: prefer default effort for the workshop.
+
+Resource added: <https://github.com/terryds/awesome-strudel> (curated real tracks, tools,
+tutorials, sample banks) → linked from primer + demo-patterns as student inspiration.
+
+Still pending: Codex leg, Antigravity leg (same protocol).

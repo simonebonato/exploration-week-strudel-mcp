@@ -93,3 +93,14 @@ and a bass whose filter slowly opens (`sine.range(...).slow(4)`). Try `setcpm(13
 7. "Stop." → silence. Take a bow.
 
 Each step is one sentence to the agent → one audible change. That *is* the MCP lesson.
+
+---
+
+## Inspiration: what real artists do with Strudel
+
+> [!TIP]
+> **[awesome-strudel](https://github.com/terryds/awesome-strudel)** — a curated collection
+> of real Strudel tracks (covers of Grimes, Radiohead, New Order, ...), tools, tutorials,
+> and sample banks. Great for students: open a track, hear it, read its code, steal ideas.
+> Also a good source of snippets to hand the agent as a starting point ("make something
+> like this").

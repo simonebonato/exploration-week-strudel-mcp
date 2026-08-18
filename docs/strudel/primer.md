@@ -89,3 +89,5 @@ When you ask the agent "add a hi-hat," it calls `edit_pattern` to rewrite this c
 the students see *code they could have typed themselves* being written by the agent.
 
 Tested, ready-to-play examples: [demo-patterns.md](./demo-patterns.md).
+Real-world tracks, tutorials & sample banks:
+[awesome-strudel](https://github.com/terryds/awesome-strudel).
