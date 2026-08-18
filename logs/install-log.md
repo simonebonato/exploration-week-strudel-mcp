@@ -119,3 +119,28 @@ drafted in `docs/setup/antigravity-cli.md`, verify live before the session.
 - Gemini CLI integration (slice 4).
 - Knowledge base + demo patterns (slice 5).
 - Rehearsal + recovery playbook (slice 6).
+
+---
+
+## 2026-08-18 — Sandbox smoke test (fresh-environment simulation)
+
+Simulated a clean student machine per client via fake `HOME` dirs (no VM needed),
+script: `scripts/sandbox-smoke-test.sh`.
+
+| Layer | What | Result |
+| --- | --- | --- |
+| 0 | Raw MCP handshake, no AI: `npx @modelcontextprotocol/inspector --cli live-coding-music-mcp --method tools/list` | ✅ **26 tools** (exact count; docs said "~27") |
+| 1 | Claude Code, fresh HOME: `mcp add` + `mcp list` health check (real handshake, 0 tokens) | ✅ Connected |
+| 1 | Codex, fresh CODEX_HOME: `mcp add` + `mcp list` (static check, 0 tokens) | ✅ enabled, correct config.toml |
+| 2 | Codex e2e, fresh config + copied auth, `codex exec -m gpt-5.4-mini` | ✅ saw the strudel tools (model said "27" — mini-model miscount, ground truth 26) |
+| — | Antigravity sandbox | ❌ **not sandboxable**: Google OAuth is interactive, token not in plain HOME files (full state-dir copy still triggered re-auth) |
+| — | Antigravity real env (free tier): `agy -p` tool check | ✅ strudel tools present (Flash reported "20" — likely truncated/miscounted listing; 26 were confirmed 2026-07-01) |
+
+Gotchas learned:
+- Codex needs `CODEX_HOME` to point at an **existing** dir, or it errors.
+- `codex mcp list` does NOT spawn/handshake the server — "enabled" is read from config.
+  Only Claude Code's `mcp list` proves a real connection for free.
+- `gpt-5.1-codex-mini` rejected on a ChatGPT account; available slugs here:
+  gpt-5.4, gpt-5.4-mini, gpt-5.5. Used gpt-5.4-mini.
+- These sandbox tests cover **registration + spawn + tools**, not audio — the browser/
+  sound leg still needs the manual per-client test.
