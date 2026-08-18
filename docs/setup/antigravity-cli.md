@@ -72,6 +72,21 @@ like this:
 
 ## Use it
 
+> [!CAUTION]
+> **⚠️ USE AT YOUR OWN RISK — approving every single tool call gets annoying fast.**
+> Antigravity has **no `--yolo` flag**; its equivalent is a permission **Allow** rule.
+> Inside a session, type **`/permissions`** (interactive TUI) and add an Allow rule:
+>
+> ```text
+> mcp(strudel/*)     # auto-approve ALL strudel tools (recommended for the workshop)
+> mcp(*)             # auto-approve EVERY MCP tool of every server — true YOLO
+> ```
+>
+> Rules live in `~/.gemini/antigravity-cli/settings.json` (scopes: Project / Shared /
+> Global). Prefer the `strudel/*` rule — it frees the music tools while everything else
+> (shell commands, file writes, browsing) still asks. Do **not** make `mcp(*)` your
+> default.
+
 Start an interactive session with `agy`, then just ask:
 
 | You type | What happens |
