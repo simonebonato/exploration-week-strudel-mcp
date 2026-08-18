@@ -32,6 +32,19 @@ claude mcp list          # expect: strudel ... ✔ Connected
 > [!IMPORTANT]
 > Tools load at **session start** → open a **NEW** Claude Code session after registering.
 
+> [!CAUTION]
+> **⚠️ USE AT YOUR OWN RISK — approving every single tool call gets annoying fast.**
+> To let the agent work freely without Y/N prompts:
+>
+> ```bash
+> claude --dangerously-skip-permissions
+> ```
+>
+> This disables **all** permission prompts — the agent can run any command without asking.
+> Fine for a supervised music workshop; do **not** make it your default.
+> *Milder option:* on the first strudel tool prompt, choose **"Always allow"** — approvals
+> stop for that tool but everything else stays guarded.
+
 Then just ask:
 
 | You type | What happens |

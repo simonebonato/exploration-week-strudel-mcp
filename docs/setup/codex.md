@@ -39,6 +39,18 @@ command = "live-coding-music-mcp"
 > [!IMPORTANT]
 > Tools load at **session start** → start a **NEW** Codex session after registering.
 
+> [!CAUTION]
+> **⚠️ USE AT YOUR OWN RISK — approving every single tool call gets annoying fast.**
+> Each pattern edit normally asks for a Y/N confirmation. To let the agent work freely:
+>
+> ```bash
+> codex --yolo    # alias for --dangerously-bypass-approvals-and-sandbox
+> ```
+>
+> The name is honest: this disables **all** approvals and sandboxing — the agent can run
+> any command without asking. Fine for a supervised music workshop; do **not** make it
+> your default way of running Codex.
+
 Then just ask:
 
 | You type | What happens |
