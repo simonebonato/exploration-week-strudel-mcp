@@ -17,9 +17,15 @@ npx playwright install chromium
 # ...plus Antigravity CLI itself: https://antigravity.google/docs  (command: agy)
 ```
 
-**2. Register the server** — no `agy mcp` subcommand exists; it reads a config file
-(shared by the CLI and the IDE). Create `~/.gemini/config/mcp_config.json` (and the
-folder) if missing:
+**2. Register the server** — unlike Claude Code/Codex there is **no `add` command**
+(no `agy mcp add`); you edit a JSON config file. Two locations work:
+
+| Scope | File |
+| --- | --- |
+| **Global** (recommended for the workshop) | `~/.gemini/config/mcp_config.json` |
+| Workspace (this project only) | `.agents/mcp_config.json` in the project folder |
+
+Create the file (and folders) if missing:
 
 ```json
 {
@@ -29,7 +35,12 @@ folder) if missing:
 }
 ```
 
-**3. Confirm** with a non-interactive check:
+**3. Confirm** — two ways:
+
+- **Interactive MCP manager:** inside a session, type **`/mcp`** and press Enter → an
+  overlay shows live connection status per server, can **reload the config** (no restart
+  needed after editing), and shows connection logs.
+- Non-interactive check:
 
 ```bash
 agy -p "Do you have an MCP server named 'strudel'? List its tools."

@@ -3,3 +3,6 @@ command = "live-coding-music-mcp"
 
 [mcp_servers.strudel.tools.playback]
 approval_mode = "approve"
+
+[mcp_servers.strudel.tools.edit_pattern]
+approval_mode = "approve"
