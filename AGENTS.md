@@ -132,6 +132,27 @@ Side effect: the same URL form preloads a pattern into a slide.
     compose, generate_rhythm, music_theory, transform/effect/shape, analyze, session,
     import/export_midi, diagnostics, etc.
 
+## Model evidence (what has actually been verified, and on what)
+
+**Record the model *and* the effort level with every rehearsal result.** A pass on a big
+model at high effort does not transfer to a student on defaults.
+
+| Verified | Model | Notes |
+| --- | --- | --- |
+| Live reggae demo, agent unaided | **Claude Sonnet, high effort** | 2026-08-20 — worked first time |
+| `analyze` returns real audio measurements | Claude Sonnet, high effort | 2026-08-20 |
+| strudel.cc URL round-trips (the save rule) | Claude Sonnet, high effort | 2026-08-20 |
+
+**Budget implication:** colleagues reported Sonnet works and Opus "appeared better at
+correcting problems." The demo building cleanly on **Sonnet** means the workshop does not
+need the expensive tier — useful input for the FHNW plan decision.
+
+⚠️ **Open risk: effort level is a per-user setting students won't have raised.** Everything
+above was run at *high* effort. If the demo's reliability depends on that, the rehearsal
+proved something the room can't reproduce. Test 2b in `docs/rehearsal.md` closes this, and
+it must close **before the pre-work email goes out**, because the fix may be an extra setup
+step.
+
 ## Install: what can and cannot be removed (researched 2026-08-20)
 
 **Node cannot be eliminated.** Neither Claude Code nor Codex exposes a reusable JS runtime

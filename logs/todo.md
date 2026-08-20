@@ -72,6 +72,9 @@ Status legend: [ ] todo · [~] in progress · [x] done · [!] blocked · [–] d
 ## Slice F — Verify + de-risk
 > Full protocol with pass criteria: `docs/rehearsal.md`. Run of show: `docs/run-of-show.md`.
 - [ ] Play a pattern from **Codex** end-to-end (only Claude Code has proven audio)
+- [ ] **Re-run the core demo at DEFAULT effort** — everything so far was Sonnet/high, which
+      students won't have. Gates the pre-work email (may add a setup step). See rehearsal 2b
+- [ ] Tell FHNW: the demo works on **Sonnet**, not just Opus — relevant to which plan to buy
 - [x] Verified what `analyze` returns (2026-08-20) — real FFT on real audio, confirms the
       "measures the output" claim. `audio_capture` is broken (lazy injection misses the
       GainNode intercept); removed from the wording. `brightness` field is broken too.

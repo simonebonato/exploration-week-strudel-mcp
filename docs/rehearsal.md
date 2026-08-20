@@ -5,13 +5,21 @@ the pass, you haven't tested it.
 
 Legend: 🔴 blocking (workshop fails without it) · 🟡 important · ⚪ nice to have
 
+> [!IMPORTANT]
+> **Record the model AND the effort level with every result.** "It worked" is not evidence
+> unless you know what it worked *on*. A pass on a big model at high effort does not
+> transfer to a student on defaults.
+>
+> Everything verified so far: **Claude Sonnet, high effort, via Claude Code** (2026-08-20).
+
 | # | Test | Priority | Time | Status |
 |---|---|---|---|---|
-| 1 | Your own machine, end to end | 🔴 | 10 min | ✅ done 2026-07-01 (Claude Code only) |
+| 1 | Your own machine, end to end | 🔴 | 10 min | ✅ 2026-07-01 (Claude Code) |
 | 2 | Codex audio parity | 🟡 | 10 min | ⬜ |
-| 3 | Does `analyze` do what the deck claims? | 🟡 | 15 min | ✅ **done 2026-08-20 — analyze passes, audio_capture broken** |
+| 2b | **Student conditions: default effort** | 🔴 | 20 min | ⬜ |
+| 3 | Does `analyze` do what the deck claims? | 🟡 | 15 min | ✅ 2026-08-20 · Sonnet/high — analyze passes, audio_capture broken |
 | 4 | Play-test every reggae pattern | 🔴 | 30 min | ⬜ **still unheard — the live run does not cover this** |
-| 5 | URL round-trip (the save button) | 🔴 | 5 min | ✅ **passed 2026-08-20** |
+| 5 | URL round-trip (the save button) | 🔴 | 5 min | ✅ 2026-08-20 · Sonnet/high |
 | 6 | Every prompt against a live agent | 🟡 | 60 min | ⬜ |
 | 7 | **Windows dry-run** | 🔴 | 90 min | ⬜ |
 | 8 | Deck rehearsal | 🔴 | 30 min | ⬜ |
@@ -49,6 +57,32 @@ email before they go out.
 
 ---
 
+## 2b 🔴 Student conditions — default effort
+
+Everything so far was run on **Sonnet at high effort**. Students will arrive on whatever
+the default is. If the demo only works because you raised the effort, your rehearsal proved
+something the room can't reproduce.
+
+Set effort back to default (`/effort` in Claude Code), start a **fresh** session, and run
+the core reggae prompt from [`strudel/demo-reggae.md`](strudel/demo-reggae.md) exactly as
+written.
+
+**Pass:** the agent still teaches-and-builds one instrument at a time, still honours *"wait
+for me before continuing"*, and still produces something recognisably reggae.
+
+**If it degrades:** you have three options, in order of preference —
+1. Tell students to raise effort as part of setup (one line in `START-HERE.md`)
+2. Make the prompts more explicit to compensate (`prompts.md`)
+3. Ask FHNW for the tier that behaves well by default
+
+Whichever it is, **decide before the pre-work email goes out** — it may add a setup step.
+
+⚪ Also worth one run at default effort: two or three prompts from
+[`strudel/prompts.md`](strudel/prompts.md), especially a GIVE ME OPTIONS one. "Wait for me
+before continuing" is the instruction that degrades first.
+
+---
+
 ## 3 🟡 Does `analyze` do what the deck claims?
 
 The deck, `prompts.md` and `START-HERE.md` all tell students the agent can **measure** the
@@ -63,7 +97,7 @@ With something playing, ask the agent:
 **Pass:** `analyze` returns something recognisably about the sound (playing/silent,
 loudness, frequency energy) — enough to honestly say "it can measure it."
 
-### ✅ Result, 2026-08-20
+### ✅ Result, 2026-08-20 · Claude Sonnet, high effort
 
 `analyze` **passes, convincingly.** On a live kick it returned `average 14.2, peak 225,
 peakFrequency 43Hz, bass 208, treble 7, isPlaying true`. Source inspection confirms it is
@@ -96,7 +130,7 @@ in particular:
 chords need `.clip()` to sound staccato, and whether `setcpm(75/4)` feels right.
 
 > [!IMPORTANT]
-> **2026-08-20 — the live demo ran perfectly, agent unaided.** That is genuinely good news
+> **2026-08-20 — the live demo ran perfectly, agent unaided** (Claude Sonnet, high effort). That is genuinely good news
 > for the demo, but it does **not** close this test. The agent's output and the fallback
 > patterns are different code; the fallbacks remain unheard.
 >
@@ -123,7 +157,7 @@ You tell students in three places that copying the URL saves their work. Prove i
 
 **Pass:** the same code appears and plays the same thing.
 
-### ✅ Result, 2026-08-20
+### ✅ Result, 2026-08-20 · Claude Sonnet, high effort
 
 **Passed.** The save-your-work rule in `START-HERE.md`, `prompts.md` and the deck is sound.
 
@@ -135,6 +169,8 @@ Run each prompt in [`strudel/prompts.md`](strudel/prompts.md) once. You're not l
 perfection — you're looking for prompts that **reliably produce something interesting**.
 
 **Pass, per prompt:** the agent does roughly what the prompt implies, in under ~3 turns.
+**Record the model and effort** you ran them on — and ideally spot-check the weakest ones at
+default effort too (see test 2b).
 **Delete or rewrite anything that flops.** A prompt that fails in front of a beginner
 teaches them the tool doesn't work.
 
