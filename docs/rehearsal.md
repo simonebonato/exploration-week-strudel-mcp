@@ -9,7 +9,7 @@ Legend: 🔴 blocking (workshop fails without it) · 🟡 important · ⚪ nice 
 |---|---|---|---|---|
 | 1 | Your own machine, end to end | 🔴 | 10 min | ✅ done 2026-07-01 (Claude Code only) |
 | 2 | Codex audio parity | 🟡 | 10 min | ⬜ |
-| 3 | Does `analyze` do what the deck claims? | 🟡 | 15 min | ⬜ |
+| 3 | Does `analyze` do what the deck claims? | 🟡 | 15 min | ✅ **done 2026-08-20 — analyze passes, audio_capture broken** |
 | 4 | Play-test every reggae pattern | 🔴 | 30 min | ⬜ |
 | 5 | URL round-trip (the save button) | 🔴 | 5 min | ⬜ |
 | 6 | Every prompt against a live agent | 🟡 | 60 min | ⬜ |
@@ -62,8 +62,22 @@ With something playing, ask the agent:
 
 **Pass:** `analyze` returns something recognisably about the sound (playing/silent,
 loudness, frequency energy) — enough to honestly say "it can measure it."
-**If `audio_capture` is broken or returns nothing useful:** remove it from the wording in
-`AGENTS.md` and the deck. Say "it can measure the sound" and only name the tool that works.
+
+### ✅ Result, 2026-08-20
+
+`analyze` **passes, convincingly.** On a live kick it returned `average 14.2, peak 225,
+peakFrequency 43Hz, bass 208, treble 7, isPlaying true`. Source inspection confirms it is
+real DSP on the real audio signal (a Web Audio `AnalyserNode` tapped into Strudel's output
+graph), not an inference from the pattern code. The "it can measure the output" claim is
+safe to teach — and stronger than expected.
+
+`audio_capture` **fails** — *"Audio capture not connected."* It's structurally broken in
+v4.0.0: lazy injection misses the one-shot `GainNode.connect` interception. **Removed from
+the wording in `AGENTS.md`/`CLAUDE.md`. Don't name it to students.**
+
+Also don't use `analyze`'s `brightness` field — it compares an FFT-bin-index centroid
+against Hz-scale thresholds, so it reports `"dark"` for essentially everything. Full
+caveats in `AGENTS.md` § analyze caveats.
 
 ---
 

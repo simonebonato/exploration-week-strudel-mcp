@@ -53,9 +53,31 @@ Colleagues' feedback said flatly "the LLM cannot hear the Strudel output." **Tha
 for this server** and a curious student will catch it. Teach the true version:
 
 1. **It READS your code** — perfectly.
-2. **It can MEASURE the output** — via `analyze`, `audio_capture`, `query_pattern_events`.
-   Is it playing? Where is the energy? Too bassy? (Proven 2026-07-01: `analyze` reported
-   bass energy at ~86Hz — the kick.)
+2. **It can MEASURE the output** — via `analyze`. This is real DSP on the real audio, not
+   an inference from the code: the server monkey-patches `GainNode.prototype.connect` in
+   the page at `init`, taps a Web Audio `AnalyserNode` (fftSize 1024) into Strudel's
+   output, and reads `getByteFrequencyData`. Is it playing? Where's the energy? Too bassy?
+   **Verified 2026-08-20** on a live kick: `average 14.2, peak 225, peakFrequency 43Hz,
+   bass 208 vs treble 7` → `isPlaying: true`.
+   ⚠️ `audio_capture` **does not work** — see the caveats below. Don't name it to students.
+
+### `analyze` caveats (read before teaching from its numbers)
+
+- **Bands:** `bass` = 0–172 Hz · `lowMid` 172–689 · `mid` 689–2713 · `highMid` 2.7–5.5 kHz ·
+  `treble` 5.5–11 kHz. Bins above ~11 kHz feed `average` but no named band.
+- **Thresholds:** `isPlaying` = `average > 5`, `isSilent` = `average < 1`.
+- 🐛 **`brightness` is broken — ignore it.** It's derived from `centroid`, which is in FFT
+  *bin index* units (0–511), but compared against thresholds of 500/200 that were clearly
+  written for Hz. `'bright'` would need a centroid above ~21 kHz, so effectively everything
+  reports `"dark"`. Use the raw `bass`/`treble` numbers instead.
+- 🐛 **`audio_capture` is structurally broken in v4.0.0.** It uses the same
+  `GainNode.prototype.connect` interception trick as the analyzer — but its
+  `injectRecorder()` is called **lazily**, on first use (`server.js:442`), by which time
+  Strudel has already wired its audio graph. The patch never fires again, so `isConnected`
+  stays false and it returns *"Audio capture not connected."* The analyzer works only
+  because it injects at `init`, before any audio exists. Possible workaround (untested):
+  call `audio_capture` once to force injection, then **stop and restart playback** so a
+  fresh GainNode connection triggers the patch, then sample.
 3. **It cannot JUDGE it.** No taste, no ears.
 
 → **You are the ears.** Feedback must be descriptive, not evaluative: "the drums feel too

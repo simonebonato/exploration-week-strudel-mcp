@@ -67,8 +67,10 @@ Status legend: [ ] todo · [~] in progress · [x] done · [!] blocked · [–] d
 ## Slice F — Verify + de-risk
 > Full protocol with pass criteria: `docs/rehearsal.md`. Run of show: `docs/run-of-show.md`.
 - [ ] Play a pattern from **Codex** end-to-end (only Claude Code has proven audio)
-- [ ] Verify what `analyze` and `audio_capture` actually return — the "three levels"
-      segment claims capabilities that need re-checking before you teach them
+- [x] Verified what `analyze` returns (2026-08-20) — real FFT on real audio, confirms the
+      "measures the output" claim. `audio_capture` is broken (lazy injection misses the
+      GainNode intercept); removed from the wording. `brightness` field is broken too.
+- [ ] Optional: try the audio_capture workaround (force injection, then restart playback)
 - [x] Investigated non-Node / smaller install (2026-08-20). Findings in AGENTS.md:
       Node is unavoidable · keep the global install (npx breaks Codex's 10s timeout) ·
       `--no-shell` and the bundled playwright CLI are free wins, now in the docs ·
