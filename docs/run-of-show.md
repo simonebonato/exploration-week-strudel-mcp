@@ -42,6 +42,7 @@ Source: [`student/pre-work-email.md`](student/pre-work-email.md). Before you sen
 - [ ] One agent running, one Chromium window. Quit everything else
 - [ ] Volume tested at room level, then turned down
 - [ ] `slides/dist` open in a browser (not the dev server — one less thing to break)
+- [ ] YouTube slide loads (needs network) — decide now whether you have a local backup
 
 ---
 
@@ -73,6 +74,10 @@ loud. Optional. But it's the best part."* This is what gives the free hour a sha
 Follow [`strudel/primer.md` Part 1](strudel/primer.md#part-1--the-15-minute-arc). Deck
 slides 4–14.
 
+0. **Show the destination first** — ~60–90 sec of
+   [2 Minute Deep Acid in Strudel](https://www.youtube.com/watch?v=HkgV_-nJOuE) (deck slide
+   5). Not the whole thing. Point out one thing: he adds one layer at a time.
+   ⚠️ needs network — skip it rather than fight dead wifi.
 1. **Make a noise before explaining anything.** `sound("bd*4")`, Ctrl+Enter.
 2. **The cycle.** Build it up line by line, playing each. The move that lands it: ask
    *"what happens if I add one more thing?"* **before** you do it.

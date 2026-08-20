@@ -6,6 +6,11 @@ code, how to make music, or what any of this is yet.
 **What you're going to do:** type a request in plain English to an AI agent, and a browser
 will start making music. Then you'll take over and make something of your own.
 
+> **Curious what this looks like?**
+> [**2 Minute Deep Acid in Strudel (from scratch)**](https://www.youtube.com/watch?v=HkgV_-nJOuE)
+> by Switch Angel — someone building a track live, from an empty page, one line at a time. You'll hear each
+> line the moment it's typed. That's Strudel.
+
 > [!IMPORTANT]
 > **Do the "Before the workshop" bit at home.** It takes ~10 minutes and involves two
 > downloads. Doing it in the room, on room wifi, with 20 other people, is much less fun.
@@ -204,6 +209,9 @@ this.
 
 ## Keep going after the workshop
 
+- **[2 Minute Deep Acid in Strudel (from scratch)](https://www.youtube.com/watch?v=HkgV_-nJOuE)**
+  by Switch Angel — watch someone build a whole track live from an empty page. Two minutes, and you can
+  read most of it after today.
 - **[Strudel's own interactive tutorial](https://strudel.cc/workshop/first-sounds/)** —
   click through it at your own pace. It's genuinely good.
 - **[Strudel documentation](https://strudel.cc/learn/)** — every function, with a play

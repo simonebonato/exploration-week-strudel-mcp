@@ -17,6 +17,20 @@ Two parts, deliberately separated:
 
 # Part 1 — The 15-minute arc
 
+## Step 0a: show them the destination (~90 sec)
+
+Play **[2 Minute Deep Acid in Strudel (from scratch)](https://www.youtube.com/watch?v=HkgV_-nJOuE)**
+by Switch Angel — but only ~60–90 seconds of it, not the whole thing.
+
+Say: *"Nothing was there when this started. Every line you see appear makes a sound the
+moment it's typed. You won't be this fast today — but you'll understand what he's doing by
+the end of the next twenty minutes."*
+
+Point out **one** thing only: he adds one layer at a time. That's `stack()`, which is
+step 2 below. Then move on.
+
+> ⚠️ Needs network. If the wifi is dead, skip it rather than fight it.
+
 ## Step 0: make a noise before you explain anything (1 min)
 
 Open <https://strudel.cc>, type this, hit **Ctrl/Cmd+Enter**:
@@ -200,3 +214,6 @@ side effect.
 - The live reggae demo, step by step: **[demo-reggae.md](./demo-reggae.md)**
 - Prompts to hand students: **[prompts.md](./prompts.md)**
 - Real tracks with source: [awesome-strudel](https://github.com/terryds/awesome-strudel)
+- Live performance to show or share:
+  [2 Minute Deep Acid in Strudel (from scratch)](https://www.youtube.com/watch?v=HkgV_-nJOuE)
+  by Switch Angel

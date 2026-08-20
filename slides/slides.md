@@ -77,6 +77,33 @@ layout: section
 Live-coding music in a browser
 
 ---
+layout: center
+class: text-center
+---
+
+# This is where we're going
+
+<Youtube id="HkgV_-nJOuE" width="720" height="405" />
+
+<div class="pt-4 opacity-70 text-sm">
+"2 Minute Deep Acid in Strudel (from scratch)" — Switch Angel
+</div>
+
+<!--
+Play ~60-90 seconds. Don't play all of it.
+
+Say: "Nothing was there when this started. Every line you see appear is making a
+sound the moment it's typed. You are not going to be this fast today — but you
+will understand what he's doing by the end of the next 20 minutes."
+
+Point out ONE thing: he adds one layer at a time. That's stack(), which is the
+second thing I teach.
+
+⚠️ NEEDS NETWORK. If the wifi is dead, skip it — don't fight it on stage.
+Have the file downloaded locally as a backup if you want insurance.
+-->
+
+---
 layout: iframe-right
 url: https://strudel.cc/
 ---

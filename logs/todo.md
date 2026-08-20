@@ -42,7 +42,10 @@ Status legend: [ ] todo · [~] in progress · [x] done · [!] blocked · [–] d
 - [ ] **Verify the URL hash actually round-trips** (copy a playing pattern's URL, open it
       in a clean browser profile, confirm it replays)
 - [x] Strudel interactive tutorial + docs linked from START-HERE.md
-- [ ] Find + add a live-coding YouTube video (someone competent, actually performing)
+- [x] Live-coding video added (supplied 2026-08-20): "2 Minute Deep Acid in Strudel (from
+      scratch)" — https://www.youtube.com/watch?v=HkgV_-nJOuE. In the deck (slide 5, shown
+      at the START of the Strudel section as "where we're going"), START-HERE.md and primer
+- [ ] Decide whether to keep a local copy as an offline backup for the video slide
 - [ ] Optional appendix: how to record system audio (OBS, both OSes) — NOT workshop time
 
 ## Slice D — Core demo (reggae, live)
