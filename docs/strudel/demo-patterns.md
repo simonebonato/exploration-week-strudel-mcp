@@ -1,5 +1,10 @@
 # Demo Patterns (tested)
 
+> [!NOTE]
+> This is the **generic** build-a-beat arc, useful as a warm-up or a rescue. The session's
+> actual centrepiece is the reggae teach-and-build demo:
+> **[demo-reggae.md](./demo-reggae.md)**.
+
 A 5-step arc that builds a track from one kick to a full groove. Each step is a small,
 narratable change — perfect for "watch the agent add one layer at a time."
 

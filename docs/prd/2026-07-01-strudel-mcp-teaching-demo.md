@@ -1,8 +1,15 @@
 # PRD: Strudel MCP — Teaching Demo Across Agentic CLIs
 
+> [!WARNING]
+> **SUPERSEDED 2026-08-20** by
+> [`2026-08-20-agent-literacy-reframe.md`](2026-08-20-agent-literacy-reframe.md).
+> Kept for history. The framing here ("the subject is MCP, not music"), the three-client
+> requirement, and the free-tier assumption have all been retired. The technical facts in
+> §2 remain accurate.
+
 - **Date:** 2026-07-01
 - **Owner:** Simone Bonato
-- **Status:** Draft (post-grill)
+- **Status:** Superseded (see banner)
 
 > **Update 2026-07-01:** The Google-vendor client changed from **Gemini CLI** to
 > **Antigravity CLI** — Google replaced Gemini CLI for free/unpaid accounts on

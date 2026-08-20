@@ -15,7 +15,6 @@ flowchart LR
     subgraph agents["Pick ONE agent"]
         CC["Claude Code<br/>(Anthropic)"]
         CX["Codex<br/>(OpenAI)"]
-        AG["Antigravity CLI<br/>(Google, free)"]
     end
     agents -->|"MCP (stdio)"| S["live-coding-music-mcp"]
     S -->|Playwright| B["Chromium → strudel.cc"]
@@ -23,8 +22,13 @@ flowchart LR
 ```
 
 > [!IMPORTANT]
-> **Same server, three different agents.** Only the *way you register the server* differs.
-> That interchangeability is the whole MCP lesson.
+> **Same server, different agents. The server does not care which one you use** — only the
+> *way you register it* differs. That interchangeability is the MCP lesson, and it's why
+> the same idea works on Blender tomorrow.
+
+> [!TIP]
+> **Students should start at [`../student/START-HERE.md`](../student/START-HERE.md)** —
+> one page, no jargon. The guides here are the detailed reference behind it.
 
 ## Step 1 — Prerequisites (all clients)
 
@@ -38,8 +42,22 @@ flowchart LR
 
 ```bash
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
-npx playwright install chromium
+
+# use the server's OWN bundled playwright CLI, and skip the headless shell
+node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" install chromium --no-shell
 ```
+
+> [!IMPORTANT]
+> **Why not `npx playwright install chromium`?** Two reasons, both measured (2026-08-20):
+> 1. The server depends on `playwright@^1.52.0` — a **floating** range. `npx playwright`
+>    resolves independently, so it can download a *different* browser revision than the one
+>    the server then looks for, and the server fails with a missing-browser error.
+>    The bundled CLI always matches.
+> 2. `npx playwright` also pulls a second ~45 MB copy of playwright into `~/.npm/_npx`.
+>
+> **`--no-shell`** skips the headless shell: **−95 MB on macOS, −115 MB on Windows.** Safe
+> only because we run headed. If anyone ever sets `config.json → headless: true`, this
+> breaks.
 
 > [!NOTE]
 > The Playwright step prints an *"install your project's dependencies first"* warning.
@@ -47,19 +65,20 @@ npx playwright install chromium
 
 ## Step 3 — Pick your agent
 
+Two supported clients (narrowed 2026-08-20 — FHNW funds the plans, so students no longer
+arrive with whatever free tier they happened to have).
+
 | Vendor | Guide | Status |
 | --- | --- | --- |
 | Anthropic | **[Claude Code](./claude-code.md)** | ✅ verified, audio proven |
 | OpenAI | **[Codex](./codex.md)** | ✅ registered — live audio pending |
-| Google | **[Antigravity CLI](./antigravity-cli.md)** | ✅ tools listed — live audio pending |
-| ~~Google~~ | [Gemini CLI](./gemini-cli.md) | ⚠️ deprecated for free accounts (2026-06-18) |
+
+Dropped: Antigravity CLI and Gemini CLI → [`archive/`](./archive/).
 
 More references:
 
-- 📋 **[service-setup-summary.md](./service-setup-summary.md)** — every service, macOS +
-  Windows, on one page (includes the Windows `cmd /c` gotcha).
-- 🆓 **[free-and-local-options.md](./free-and-local-options.md)** — three €0 ways to drive
-  the same server (hosted free tier, local models via Ollama / LM Studio).
+- 📋 **[service-setup-summary.md](./service-setup-summary.md)** — both clients, macOS +
+  Windows, on one page (includes the Windows registration gotcha).
 - 🚑 **[recovery-playbook.md](./recovery-playbook.md)** — "if X breaks live → do Y".
 
 ## Good to know

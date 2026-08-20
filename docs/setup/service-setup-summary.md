@@ -20,8 +20,20 @@ Every service, both platforms, one page.
 
 ```bash
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
-npx playwright install chromium
+
+# macOS/Linux — use the server's OWN playwright CLI so the browser revision always matches,
+# and skip the headless shell (−95 MB macOS / −115 MB Windows; safe because we run headed)
+node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" install chromium --no-shell
+
+# Windows PowerShell — same thing
+node "$(npm root -g)\@williamzujkowski\live-coding-music-mcp\node_modules\playwright\cli.js" install chromium --no-shell
 ```
+
+> [!WARNING]
+> Do **not** use `npx playwright install chromium`. The server depends on
+> `playwright@^1.52.0` — a floating range — so `npx` can resolve a different version and
+> download the wrong browser revision, after which the server fails with a missing-browser
+> error. It also duplicates ~45 MB into `~/.npm/_npx`. (Measured 2026-08-20.)
 
 The global bin `live-coding-music-mcp` must be on PATH:
 
@@ -36,16 +48,42 @@ The global bin `live-coding-music-mcp` must be on PATH:
 > retry. 🪟
 
 > [!IMPORTANT]
-> **Windows `.cmd` gotcha** — the classic *"works on Mac, fails on Windows"* MCP failure.
-> On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` script,
-> not a real program — and some MCP clients **cannot launch `.cmd` files** directly. The
-> fix is always the same idea: launch it *through* the Windows shell (`cmd /c ...`). 🪟
+> **Windows registration — use the absolute-`node` form.** 🪟
 >
-> | Client | Windows-safe registration | Full example |
-> | --- | --- | --- |
-> | Claude Code | `claude mcp add strudel -- cmd /c live-coding-music-mcp` | [guide](./claude-code.md#-windows-if-the-server-wont-start) |
-> | Codex (`config.toml`) | `command = "cmd"` · `args = ["/c", "live-coding-music-mcp"]` | [guide](./codex.md#-windows-if-the-server-wont-start) |
-> | Antigravity (`mcp_config.json`) | `"command": "cmd", "args": ["/c", "live-coding-music-mcp"]` | [guide](./antigravity-cli.md#-windows-if-the-server-wont-start) |
+> On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` shim, not a
+> real program. Both clients have **open upstream bugs** spawning these:
+>
+> - Codex: [openai/codex#16229](https://github.com/openai/codex/issues/16229) — stdio MCP
+>   fails via `.cmd`/npx shims. Open since 2026-03-30, last confirmed 2026-07-02.
+> - Claude Code: [#82791](https://github.com/anthropics/claude-code/issues/82791) — stdio
+>   MCP times out at 30 s on Windows. Open, updated 2026-08-19.
+>
+> **`cmd /c` is not a reliable fix** — reports say it converts "not found" into "timed
+> out". The configuration confirmed working in both issue threads is **absolute `node` +
+> absolute script path**:
+>
+> ```powershell
+> npm root -g    # e.g. C:\Users\you\AppData\Roaming\npm\node_modules
+>
+> claude mcp add strudel -- node "C:\...\node_modules\@williamzujkowski\live-coding-music-mcp\dist\index.js"
+> codex  mcp add strudel -- node "C:\...\node_modules\@williamzujkowski\live-coding-music-mcp\dist\index.js"
+> ```
+>
+> **Let the CLI write the config.** Hand-editing `~/.codex/config.toml` on Windows is a
+> classic failure — TOML basic strings treat `\` as an escape, so
+> `"C:\Program Files\nodejs\node.exe"` silently corrupts (`\P`, `\n`). If you must edit
+> by hand, use single-quoted literal strings or doubled backslashes, and add
+> `startup_timeout_sec = 60`.
+>
+> ⚠️ Still **unverified on real Windows hardware** — this is doc + issue-thread research,
+> not a dry-run. Confirm before the event.
+
+> [!NOTE]
+> **Why not `npx` as the registered command?** Measured 2026-08-20: cold `npx` start took
+> **12.2 s** to first tool response, against Codex's **10 s** default
+> `startup_timeout_sec`. Warm it's ~1.1 s and works offline (pinning `@4.0.0` means no
+> per-spawn registry hit) — but the first launch, on a student laptop, on school wifi, is
+> exactly when it will fail. It also saves no download. **Keep the global install.**
 
 ## 2. Per-service registration
 
@@ -80,32 +118,6 @@ command = "live-coding-music-mcp"
 
 Full guide: [codex.md](./codex.md).
 
-### Antigravity CLI (Google) — ✅ verified on macOS · the free Google client
-
-No `mcp` subcommand; it reads a config file. Command is `agy`.
-
-| Config file | Path |
-| --- | --- |
-| macOS/Linux ✅ | `~/.gemini/config/mcp_config.json` |
-| Windows 🪟 | `%USERPROFILE%\.gemini\config\mcp_config.json` |
-
-```json
-{
-  "mcpServers": {
-    "strudel": { "command": "live-coding-music-mcp", "args": [] }
-  }
-}
-```
-
-Verify: `agy -p "List your strudel MCP tools."` → lists init/edit_pattern/playback/...
-Full guide: [antigravity-cli.md](./antigravity-cli.md).
-
-### Gemini CLI — ⚠️ deprecated for free accounts
-
-Replaced by Antigravity CLI on 2026-06-18 for free/unpaid tiers. Only relevant on a
-**paid** plan (`~/.gemini/settings.json`, Windows `%USERPROFILE%\.gemini\settings.json`).
-See [gemini-cli.md](./gemini-cli.md).
-
 ### Claude Desktop (optional alternative to Claude Code)
 
 Edit the config, then restart the app:
@@ -119,12 +131,7 @@ Edit the config, then restart the app:
 { "mcpServers": { "strudel": { "command": "live-coding-music-mcp" } } }
 ```
 
-## 3. Free / no-subscription options (for students)
-
-Three €0 ways to drive the same server, including fully-local models — see
-[free-and-local-options.md](./free-and-local-options.md). (Local paths not yet tested.)
-
-## 4. Pre-demo sanity checklist (per machine)
+## 3. Pre-demo sanity checklist (per machine)
 
 1. `node -v` → v22+ ✔
 2. `live-coding-music-mcp` resolves on PATH ✔
@@ -133,9 +140,9 @@ Three €0 ways to drive the same server, including fully-local models — see
 5. Browser window died mid-demo? → ask for *"Initialize Strudel"* again (`init` relaunches).
    More: [recovery-playbook.md](./recovery-playbook.md).
 
-## 5. Windows verification TODO (before the event)
+## 4. Windows verification TODO (before the event)
 
 - [ ] Node 22+ installs; `live-coding-music-mcp` lands on PATH.
-- [ ] `npx playwright install chromium` succeeds; Chromium launches visibly.
-- [ ] Claude Code / Codex / Antigravity each connect (with or without `cmd /c`).
-- [ ] Audio actually plays from the Chromium window.
+- [ ] The bundled-playwright `install chromium --no-shell` succeeds; Chromium launches visibly.
+- [ ] Claude Code **and** Codex each connect using the **absolute-`node`** form.
+- [ ] Audio is actually **audible** from the Chromium window (not just `isSilent: false`).

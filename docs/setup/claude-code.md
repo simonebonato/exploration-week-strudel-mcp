@@ -65,17 +65,27 @@ Then just ask:
 | Code changed, **music didn't** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) |
 | Remove it | `claude mcp remove strudel` |
 
-### 🪟 Windows: if the server won't start
+### 🪟 Windows: register with the absolute-`node` form
 
-On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` script, not
-a real program. Some MCP clients can't launch `.cmd` files directly, so you launch it
-*through* the Windows shell (`cmd /c ...`) instead. Remove the old entry and re-register:
+On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` shim, not a
+real program — and Claude Code has an open bug spawning stdio MCP servers this way
+([#82791](https://github.com/anthropics/claude-code/issues/82791), updated 2026-08-19:
+times out at 30 s).
+
+**`cmd /c` is not a reliable fix** — it tends to turn "not found" into "timed out". Use
+absolute `node` + absolute script path, which is the form confirmed working in the issue
+threads:
 
 ```powershell
+npm root -g            # prints e.g. C:\Users\you\AppData\Roaming\npm\node_modules
+
 claude mcp remove strudel
-claude mcp add strudel -- cmd /c live-coding-music-mcp
+claude mcp add strudel -- node "C:\Users\you\AppData\Roaming\npm\node_modules\@williamzujkowski\live-coding-music-mcp\dist\index.js"
 claude mcp list        # expect: strudel ... ✔ Connected
 ```
+
+> ⚠️ Researched from docs + issue threads on 2026-08-20, **not yet verified on real
+> Windows hardware.** The dry-run is the highest-priority open item.
 
 ## Reference
 

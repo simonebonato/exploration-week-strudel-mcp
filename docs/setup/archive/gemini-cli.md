@@ -1,5 +1,10 @@
 # Gemini CLI — deprecated for this demo ⚠️
 
+> [!CAUTION]
+> **ARCHIVED 2026-08-20 — not a supported path.** Deprecated for free accounts on
+> 2026-06-18, then dropped entirely. Supported clients are Claude Code and Codex.
+> See [`README.md`](./README.md).
+
 **Use [Antigravity CLI](./antigravity-cli.md) instead** as the Google-vendor client.
 
 ## Why

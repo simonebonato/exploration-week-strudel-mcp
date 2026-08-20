@@ -1,5 +1,11 @@
 # Free & Local Ways to Drive the Strudel MCP (so students don't have to pay)
 
+> [!CAUTION]
+> **ARCHIVED 2026-08-20 — not a supported path.** FHNW funds the plans, so the free/local
+> route is no longer needed. Kept as reference in case funding falls through.
+> The local-model paths were never tested.
+> See [`README.md`](./README.md).
+
 > Researched 2026-07-01. The hosted free tier is proven; the **local options are not yet
 > tested with THIS MCP** — see "Verification status" on each. Test before relying on any of
 > them for a live demo.

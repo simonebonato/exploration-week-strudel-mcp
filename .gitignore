@@ -11,3 +11,10 @@ Thumbs.db
 # Node
 node_modules/
 npm-debug.log*
+
+# Slidev build output
+slides/dist/
+slides/.slidev/
+
+# scratch
+tmp/

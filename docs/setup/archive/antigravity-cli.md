@@ -1,5 +1,10 @@
 # Strudel MCP in Antigravity CLI (Google)
 
+> [!CAUTION]
+> **ARCHIVED 2026-08-20 — not a supported path.** The Google leg was dropped after it did
+> not survive testing. Supported clients are Claude Code and Codex.
+> See [`README.md`](./README.md).
+
 **Status: ✅ installed, signed in, all 26 tools listed (2026-07-01) — live audio pending.**
 
 > [!NOTE]
@@ -98,7 +103,7 @@ Start an interactive session with `agy`, then just ask:
 
 > [!TIP]
 > **Code changed but the music didn't?** Press **`update`** top right in the strudel.cc
-> window (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png).
+> window (or Ctrl/Cmd+Enter) — [screenshot](../../assets/strudel-update-button.png).
 
 > [!CAUTION]
 > **Free-tier quota is metered and can run out mid-session** (it happened during testing,

@@ -70,18 +70,38 @@ Then just ask:
 | Code changed, **music didn't** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) |
 | `codex mcp add` unknown | Older Codex builds only read `config.toml` — use the TOML block above |
 
-### 🪟 Windows: if the server won't start
+### 🪟 Windows: register with the absolute-`node` form
 
-On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` script, not
-a real program. Some MCP clients can't launch `.cmd` files directly, so you launch it
-*through* the Windows shell (`cmd /c ...`) instead. Your `config.toml` block then looks
-like this:
+On Windows, npm installs the server as `live-coding-music-mcp.cmd` — a `.cmd` shim, not a
+real program. Codex has an **open** bug spawning stdio MCP servers via `.cmd`/npx shims
+([openai/codex#16229](https://github.com/openai/codex/issues/16229), filed 2026-03-30,
+last confirmed 2026-07-02). **`cmd /c` is not a reliable fix** — reports say it converts
+"not found" into "timed out".
 
-```toml
-[mcp_servers.strudel]
-command = "cmd"
-args = ["/c", "live-coding-music-mcp"]
+Use absolute `node` + absolute script path, and **let the CLI write the config**:
+
+```powershell
+npm root -g            # prints e.g. C:\Users\you\AppData\Roaming\npm\node_modules
+
+codex mcp add strudel -- node "C:\Users\you\AppData\Roaming\npm\node_modules\@williamzujkowski\live-coding-music-mcp\dist\index.js"
+codex mcp list         # expect: strudel ... enabled
 ```
+
+> [!WARNING]
+> **Do not hand-edit `config.toml` on Windows.** TOML basic strings treat `\` as an escape,
+> so `"C:\Program Files\nodejs\node.exe"` silently corrupts (`\P` and `\n` are escape
+> sequences). If you must, use single-quoted literal strings or doubled backslashes.
+>
+> Also consider raising the startup budget — Codex's default `startup_timeout_sec` is
+> **10 s**:
+>
+> ```toml
+> [mcp_servers.strudel]
+> startup_timeout_sec = 60
+> ```
+
+> ⚠️ Researched from docs + issue threads on 2026-08-20, **not yet verified on real
+> Windows hardware.**
 
 ## Reference
 
