@@ -26,12 +26,56 @@ claude mcp add --transport http slidev http://localhost:3030/__mcp   # dev serve
 
 Then: *"Add a slide after the three-modes one showing the seed prompts."*
 
+## Live Strudel pads (slides 8–11)
+
+Slides 8–11 — *Build it up · Two more · Layers · One knob* — each carry a `<StrudelPad>`:
+a small Strudel REPL docked into the slide, so you can play the examples **without leaving
+the deck**. Click **▶ Live Strudel** bottom-right, then click a chip to load and play that
+snippet. The editor is live — type in it, `Ctrl/Cmd+Enter` to re-run, `Ctrl/Cmd+.` to stop.
+
+Snippets live in [`components/strudelPresets.js`](components/strudelPresets.js), one named
+set per slide. To add a set: add a key there, then `<StrudelPad preset="yourkey" />` in
+`slides.md`. **Don't** pass code inline in the markdown — double quotes can't be escaped
+inside a Vue attribute and the build fails.
+
+This is **not** an iframe to strudel.cc. It's the `@strudel/repl` web component
+(`<strudel-editor>`, pinned **1.3.0**) running in the deck's own page, which is what makes
+instant snippet-swapping and real ▶/■ buttons possible. Three consequences:
+
+- **Editors are created only when you open a pad.** Opening the first one takes a moment
+  while the Strudel engine loads. Open one early to warm it.
+- **Only one pad plays at a time** (the component's `solo` mode) — opening another or
+  hitting ▶ elsewhere stops the previous one.
+- **It is a different Strudel build from strudel.cc.** Fine for these five-token examples;
+  don't assume exotic functions match.
+
+### ⚠️ The pads need network — the offline build does not cover them
+
+`slidev build` produces an offline SPA, **but the pads are an exception.** Strudel fetches
+its sample maps from `raw.githubusercontent.com` on first play and there's no service worker
+caching them. **Verified 2026-08-20:** with external requests blocked, clicking a chip does
+nothing at all — the scheduler never starts.
+
+**Mitigation:** open all four pads and play at least one chip on each **while you have
+wifi**, on the machine and browser profile you'll present from. Same rule as the strudel.cc
+sample cache, different mechanism. If the wifi dies, slide 6's strudel.cc iframe is the
+PWA-cached fallback.
+
 ## ⚠️ Rehearsal items — do not skip
 
-1. **Your clicker will not work on the live-Strudel slides.** Keyboard events don't cross
-   into a cross-origin iframe. Nothing steals your typing (good), but you also lose slide
-   navigation while focus is in Strudel. **Advance those slides by mouse-click** — click
+1. **Your clicker will not work on slide 6 (the strudel.cc iframe).** Keyboard events don't
+   cross into a cross-origin iframe. Nothing steals your typing (good), but you also lose
+   slide navigation while focus is in Strudel. **Advance that slide by mouse-click** — click
    the text column first, then arrow keys work again.
+
+   **The pads on slides 8–11 are different and safer.** They're in the deck's own page, so
+   `StrudelPad` traps keydown/keyup at the panel root. This is load-bearing, not decorative:
+   Slidev binds its shortcuts to `window` via `useMagicKeys` and its ignore-list is only
+   `INPUT`/`TEXTAREA`/`BUTTON`/`A` — CodeMirror is a **contenteditable div**, so without the
+   trap, typing `sound("bd*4")` would fire `d` (dark mode) and `o` (overview) mid-demo.
+   **Verified 2026-08-20:** pressing `d` outside a pad flips the deck to dark; typing the
+   same character inside a pad changes nothing but the code. Click the slide (not the pad)
+   to get arrow keys back.
 
 2. **Add `allow="autoplay"` for slides that must make noise.** The `layout: iframe-right`
    used here sets no `allow=` attribute. Audio worked in testing anyway, but if a slide

@@ -173,9 +173,14 @@ sound("bd ~ sd ~")    // ~ is a rest. Silence takes a slot too.
 
 </div>
 
+<StrudelPad preset="basics" />
+
 <!--
-Play each one. Ask "what happens if I add one more?" BEFORE you do it.
-That question is the whole lesson.
+Play each one from the pad, in order. Ask "what happens if I add one more?"
+BEFORE you click the next chip. That question is the whole lesson.
+
+The pad is live — after the last chip, TYPE a fifth thing into it in front of them
+and watch the loop speed up. That's the point landing.
 -->
 
 ---
@@ -197,6 +202,13 @@ Don't worry about the second one. Just know that<br>
 
 </div>
 
+<StrudelPad preset="more" />
+
+<!--
+bd(3,8) then bd(5,8) back to back — same idea, different feel. Don't explain the
+maths; let them hear that one number changed the groove.
+-->
+
 ---
 
 # Layers
@@ -217,8 +229,11 @@ Three lines. That's music.
 
 </div>
 
+<StrudelPad preset="layers" />
+
 <!--
-Add one line at a time, playing after each. This is the "room leans in" moment.
+Click the chips left to right, letting each one loop for a few seconds. This is the
+"room leans in" moment — don't rush it, and don't talk over the third click.
 -->
 
 ---
@@ -242,6 +257,13 @@ There are dozens more — `.room()` reverb, `.lpf()` darker, `.delay()` echo.
 **You will never memorise them. You don't have to.**
 
 </div>
+
+<StrudelPad preset="knob" />
+
+<!--
+First two chips back to back = the whole slide. The room hears one number fix a mix.
+Then .room() and .lpf() only if you have time — they're the "dozens more" made real.
+-->
 
 ---
 layout: statement

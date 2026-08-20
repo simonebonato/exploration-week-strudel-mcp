@@ -7,11 +7,11 @@ The ~12-minute centrepiece. One prompt sequence, run **live**.
 > works. Every pause below has a script. Done right, the latency reads as deliberate
 > pacing rather than dead air — and the room learns the music theory in the gaps.
 
-> [!WARNING]
-> **The patterns below are NOT yet play-tested.** They are written from the musical
-> characteristics of reggae and standard Strudel syntax, but nobody has heard them.
-> **Play-test every one before the session** and correct this file. Until then, treat them
-> as sketches, not insurance.
+> [!NOTE]
+> **The fallbacks below are real.** They were captured from the passing rehearsal run on
+> 2026-08-20 (Claude Sonnet, low effort) — this is the agent's own output, heard on the demo
+> machine, not a hand-written sketch. Each step has a **strudel.cc URL**: pasting that into
+> the browser is faster and less error-prone than typing code, so that is the fallback move.
 
 ---
 
@@ -29,10 +29,10 @@ let them hear the difference.
 ## Setup (before you start talking)
 
 - Agent open, fresh session, MCP connected.
-- **Fallbacks open in a second window**, ready to paste in 5 seconds. The code blocks in
-  this file *are* the fallbacks — keep this page open, or copy them into a scratch text
-  file. (Don't rely on `patterns/`: that's the MCP's auto-generated store and it's
-  gitignored.)
+- **Fallbacks open in a second window**, ready in 5 seconds. The four URLs in [the ladder
+  below](#the-tested-fallback-ladder) *are* the fallbacks — keep this page open, or drop the
+  links in a scratch file / browser bookmarks bar. (Don't rely on `patterns/`: that's the
+  MCP's auto-generated store and it's gitignored.)
 - Volume tested. Chromium already clicked once (audio needs a user gesture).
 - strudel.cc sample cache warmed — **play every sound in this file while you still have
   wifi.**
@@ -79,16 +79,17 @@ on beat **3**, not beat 1. Beat 1 is a hole.
 
 Then count it out loud over the drums when they start: *one — two — BOOM — four.*
 
-**Fallback pattern** ⚠️ untested:
+**Fallback — [layer 1 ↗](https://strudel.cc/#c3RhY2soCiAgcygifiB%2BIFtiZCBzZF0gfiIpLAogIHMoImhoKjgiKS5nYWluKDAuNSkKKQ%3D%3D)** ✅ heard 2026-08-20:
 
 ```js
-setcpm(75/4)
 stack(
-  sound("~ ~ bd ~"),             // kick on 3 only — the one drop
-  sound("~ ~ sd ~").gain(0.7),   // side-stick lands with it
-  sound("~ hh ~ hh ~ hh ~ hh")   // hats on the offbeats
+  s("~ ~ [bd sd] ~"),      // one drop: kick AND snare together, on beat 3
+  s("hh*8").gain(0.5)      // straight eighths keep the pulse while beat 1 is empty
 )
 ```
+
+The `[bd sd]` bracket is worth pointing at — they learned brackets in the primer, and here
+the whole genre hangs off the fact that slot 3 is full and slot 1 is empty.
 
 ---
 
@@ -105,16 +106,22 @@ stack(
 Ask the room which one is reggae. They'll get it instantly and they'll have *heard* a
 musical concept rather than been told one.
 
-**Fallback pattern** ⚠️ untested — the skank alone:
+**Fallback — [layer 3 ↗](https://strudel.cc/#c3RhY2soCiAgcygifiB%2BIFtiZCBzZF0gfiIpLAogIHMoImhoKjgiKS5nYWluKDAuNSksCiAgbm90ZSgiYTEgfiBlMiBnMSIpLnMoInNhd3Rvb3RoIikubHBmKDQwMCkuZ2FpbigwLjkpLAogIG5vdGUoIjxbYTMsZTQsYzRdPiIpLnMoInNxdWFyZSIpCiAgICAuc3RydWN0KCJ%2BIHggfiB4IH4geCB%2BIHgiKQogICAgLmNsaXAoMC4xNSkKICAgIC5nYWluKDAuNykKKQ%3D%3D)** ✅ heard 2026-08-20 — the skank line is:
 
 ```js
-note("~ [c4,eb4,g4] ~ [c4,eb4,g4] ~ [c4,eb4,g4] ~ [c4,eb4,g4]")
-  .sound("triangle").gain(0.45).room(0.2)
+  note("<[a3,e4,c4]>").s("square")
+    .struct("~ x ~ x ~ x ~ x")   // eight slots; chords land on 2,4,6,8 — the "ands"
+    .clip(0.15)                  // very short = the chop
+    .gain(0.7)
 ```
 
-Eight slots per loop; chords land on slots 2, 4, 6, 8 — the "ands". **Show them this.**
-They learned the cycle model 20 minutes ago; this is the moment it pays off, because they
-can *read* why it's offbeat.
+**Show them `struct`.** Eight slots, every `x` on an "and", every `~` on a beat. They
+learned the cycle model 20 minutes ago; this is the moment it pays off, because they can
+*read* why it's offbeat. `.clip(0.15)` is the second half of the sound — the skank is
+chopped, not held.
+
+**The mute move:** open the layer-3 link and comment out that block (`Ctrl+/`), hit update,
+then uncomment it. Same code, one line, and the room hears reggae appear and disappear.
 
 ---
 
@@ -126,29 +133,66 @@ can *read* why it's offbeat.
 > most memorable line in the track, and it leaves enormous gaps. Space is an instrument
 > here."
 
-**Fallback pattern** ⚠️ untested:
+**Fallback — [layer 2 ↗](https://strudel.cc/#c3RhY2soCiAgcygifiB%2BIFtiZCBzZF0gfiIpLAogIHMoImhoKjgiKS5nYWluKDAuNSksCiAgbm90ZSgiYTEgfiBlMiBnMSIpLnMoInNhd3Rvb3RoIikubHBmKDQwMCkuZ2FpbigwLjkpCik%3D)** ✅ heard 2026-08-20 — the bass line is:
 
 ```js
-note("c2 ~ ~ eb2 ~ g1 ~ ~").sound("sawtooth").lpf(400).gain(0.8)
+  note("a1 ~ e2 g1").s("sawtooth").lpf(400).gain(0.9)
 ```
+
+Four slots, one of them empty, and the loudest thing in the mix (`gain 0.9`) with the top
+filtered off (`lpf 400`). That's the reggae bass in one line: low, loud, and full of holes.
 
 ---
 
 ### Step 5 — Everything together
 
-**Fallback pattern** ⚠️ untested:
+**Fallback — [layer 4 ↗](https://strudel.cc/#c3RhY2soCiAgcygifiB%2BIFtiZCBzZF0gfiIpLAogIHMoImhoKjgiKS5nYWluKDAuNSksCiAgbm90ZSgiYTEgfiBlMiBnMSIpLnMoInNhd3Rvb3RoIikubHBmKDQwMCkuZ2FpbigwLjkpLAogIG5vdGUoIjxbYTMsZTQsYzRdPiIpLnMoInNxdWFyZSIpCiAgICAuc3RydWN0KCJ%2BIHggfiB4IH4geCB%2BIHgiKQogICAgLmNsaXAoMC4xNSkKICAgIC5nYWluKDAuNyksCiAgbm90ZSgiPFthNCxjNSxlNF0%2BIikucygic2luZSIpCiAgICAuc3RydWN0KCJ4IH4geCB4IH4geCB4IH4iKQogICAgLmNsaXAoMC4yKQogICAgLmdhaW4oMC40KQopCg%3D%3D)** ✅ heard 2026-08-20:
 
 ```js
-setcpm(75/4)
 stack(
-  sound("~ ~ bd ~"),
-  sound("~ ~ sd ~").gain(0.7),
-  sound("~ hh ~ hh ~ hh ~ hh").gain(0.5),
-  note("~ [c4,eb4,g4] ~ [c4,eb4,g4] ~ [c4,eb4,g4] ~ [c4,eb4,g4]")
-    .sound("triangle").gain(0.45).room(0.2),
-  note("c2 ~ ~ eb2 ~ g1 ~ ~").sound("sawtooth").lpf(400).gain(0.8)
+  s("~ ~ [bd sd] ~"),
+  s("hh*8").gain(0.5),
+  note("a1 ~ e2 g1").s("sawtooth").lpf(400).gain(0.9),
+  note("<[a3,e4,c4]>").s("square")
+    .struct("~ x ~ x ~ x ~ x")
+    .clip(0.15)
+    .gain(0.7),
+  note("<[a4,c5,e4]>").s("sine")     // top line, added unprompted on the rehearsal run
+    .struct("x ~ x x ~ x x ~")
+    .clip(0.2)
+    .gain(0.4)
 )
 ```
+
+This is also the pattern to hand step 6 — it has an obviously busy hat part and a very loud
+bass, which is exactly what the "the hats are too busy and the bass is drowning the guitar"
+prompt is about.
+
+---
+
+## The tested fallback ladder
+
+Captured from the passing rehearsal run, **2026-08-20 · Claude Sonnet, low effort**. Each
+link is the previous one plus one instrument, so they map onto the steps above. **Paste the
+URL, don't type the code** — it's 5 seconds and can't be mistyped.
+
+| # | Adds | Use at | Link |
+| --- | --- | --- | --- |
+| 1 | one-drop drums + hats | step 2 | [layer 1 ↗](https://strudel.cc/#c3RhY2soCiAgcygifiB%2BIFtiZCBzZF0gfiIpLAogIHMoImhoKjgiKS5nYWluKDAuNSkKKQ%3D%3D) |
+| 2 | + bass | step 4 | [layer 2 ↗](https://strudel.cc/#c3RhY2soCiAgcygifiB%2BIFtiZCBzZF0gfiIpLAogIHMoImhoKjgiKS5nYWluKDAuNSksCiAgbm90ZSgiYTEgfiBlMiBnMSIpLnMoInNhd3Rvb3RoIikubHBmKDQwMCkuZ2FpbigwLjkpCik%3D) |
+| 3 | + skank | step 3 | [layer 3 ↗](https://strudel.cc/#c3RhY2soCiAgcygifiB%2BIFtiZCBzZF0gfiIpLAogIHMoImhoKjgiKS5nYWluKDAuNSksCiAgbm90ZSgiYTEgfiBlMiBnMSIpLnMoInNhd3Rvb3RoIikubHBmKDQwMCkuZ2FpbigwLjkpLAogIG5vdGUoIjxbYTMsZTQsYzRdPiIpLnMoInNxdWFyZSIpCiAgICAuc3RydWN0KCJ%2BIHggfiB4IH4geCB%2BIHgiKQogICAgLmNsaXAoMC4xNSkKICAgIC5nYWluKDAuNykKKQ%3D%3D) |
+| 4 | + top line | step 5 | [layer 4 ↗](https://strudel.cc/#c3RhY2soCiAgcygifiB%2BIFtiZCBzZF0gfiIpLAogIHMoImhoKjgiKS5nYWluKDAuNSksCiAgbm90ZSgiYTEgfiBlMiBnMSIpLnMoInNhd3Rvb3RoIikubHBmKDQwMCkuZ2FpbigwLjkpLAogIG5vdGUoIjxbYTMsZTQsYzRdPiIpLnMoInNxdWFyZSIpCiAgICAuc3RydWN0KCJ%2BIHggfiB4IH4geCB%2BIHgiKQogICAgLmNsaXAoMC4xNSkKICAgIC5nYWluKDAuNyksCiAgbm90ZSgiPFthNCxjNSxlNF0%2BIikucygic2luZSIpCiAgICAuc3RydWN0KCJ4IH4geCB4IH4geCB4IH4iKQogICAgLmNsaXAoMC4yKQogICAgLmdhaW4oMC40KQopCg%3D%3D) |
+
+**Two things to know before you lean on these:**
+
+1. **The agent built bass *before* skank** — steps 3 and 4 above are in the opposite order.
+   Nothing in the prompt fixes the order, so expect it to vary run to run. If the live agent
+   goes drums → bass → skank, follow it; the ladder already matches that. Just don't jump to
+   layer 3 while the room is still waiting to hear the skank *arrive*.
+2. **No `setcpm`** — these run at the strudel.cc default, which is faster than the ~75 BPM
+   reggae usually sits at. It still reads as reggae (it did in the run), but if you want it
+   more authentic, `setcpm(75/4)` on the first line is the one-token fix. **Untested at that
+   tempo** — try it before the day, not during.
 
 ---
 
@@ -188,15 +232,17 @@ voluntary. Get out of the way.
 | --- | --- |
 | Agent writes code but no sound | Click inside the Chromium window; press **update** in strudel.cc |
 | Agent produces something that isn't reggae | **Use it.** *"That's not reggae — what's missing?"* It'll diagnose its own output and you get a better teaching moment than the happy path |
-| Agent stalls or errors | Paste the fallback pattern, say *"I'll take this one"*, keep talking. Nobody notices |
+| Agent stalls or errors | Open the matching URL from [the ladder](#the-tested-fallback-ladder), say *"I'll take this one"*, keep talking. Nobody notices |
 | Browser dies | *"Initialize Strudel again."* |
 | Running long | Skip step 4 (bass). Steps 2, 3 and 6 are the demo; everything else is garnish |
 
 ## Pre-flight checklist
 
-- [ ] Every pattern in this file play-tested and corrected
-- [ ] Each fallback reachable in 5 seconds (this file open in a second window, or a
-      scratch text file on the desktop)
+- [x] Every pattern in this file play-tested — ✅ 2026-08-20, captured from a live run
+- [ ] **Each of the four URLs opened cold once** (they were copied from a working session;
+      confirm they still load and play from a fresh window) — 5 min
+- [ ] Each fallback reachable in 5 seconds (this file open in a second window, or the four
+      links in the bookmarks bar)
 - [ ] Full run-through on the demo machine, timed
 - [ ] Sample cache warmed online
 - [ ] Step 6 rehearsed — it's the one people rush and it's the most valuable

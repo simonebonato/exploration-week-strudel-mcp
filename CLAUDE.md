@@ -140,6 +140,7 @@ model at high effort does not transfer to a student on defaults.
 | Verified | Model | Notes |
 | --- | --- | --- |
 | Live reggae demo, agent unaided | **Claude Sonnet, high effort** | 2026-08-20 — worked first time |
+| Live reggae demo, agent unaided | **Claude Sonnet, LOW effort** | 2026-08-20 — worked perfectly. Below the default → students on defaults are safe |
 | `analyze` returns real audio measurements | Claude Sonnet, high effort | 2026-08-20 |
 | strudel.cc URL round-trips (the save rule) | Claude Sonnet, high effort | 2026-08-20 |
 
@@ -147,11 +148,11 @@ model at high effort does not transfer to a student on defaults.
 correcting problems." The demo building cleanly on **Sonnet** means the workshop does not
 need the expensive tier — useful input for the FHNW plan decision.
 
-⚠️ **Open risk: effort level is a per-user setting students won't have raised.** Everything
-above was run at *high* effort. If the demo's reliability depends on that, the rehearsal
-proved something the room can't reproduce. Test 2b in `docs/rehearsal.md` closes this, and
-it must close **before the pre-work email goes out**, because the fix may be an extra setup
-step.
+✅ **Closed 2026-08-20 — effort level is not a risk.** The worry was that everything had
+been run at *high* effort, a per-user setting students won't have raised. Test 2b re-ran the
+core reggae demo on Sonnet at **low** effort — below the Claude Code default — and it worked
+perfectly. **So: no extra setup step, no "raise your effort" line in the pre-work email or
+`START-HERE.md`, and no argument for a higher tier on these grounds.**
 
 ## Install: what can and cannot be removed (researched 2026-08-20)
 
@@ -234,10 +235,28 @@ client at a time.
 - `<Youtube id="…" />`, Mermaid, PlantUML and LaTeX are built in. `slidev build` → offline
   static SPA.
 
+**Slides 8–11 carry live Strudel pads** (added 2026-08-20). Not iframes — the
+`@strudel/repl` web component (`<strudel-editor>`, **pinned 1.3.0**) mounted in the deck's
+own page, so snippets swap instantly and the slide gets real ▶/■ buttons. Snippet sets live
+in `slides/components/strudelPresets.js`; usage is `<StrudelPad preset="basics" />`. Code
+cannot be passed inline in `slides.md` — double quotes can't be escaped in a Vue attribute.
+Verified end-to-end in the built deck 2026-08-20 (chips load, scheduler starts, AudioContext
+running, stop works).
+
+⚠️ **The pads need network and the offline build does not cover them.** Strudel fetches its
+sample maps from `raw.githubusercontent.com` on first play, with no service worker. Verified:
+with external requests blocked, clicking a chip does nothing — the scheduler never starts.
+Warm all four pads online, on the presenting machine and profile.
+
 ⚠️ **Three rehearsal items:**
-1. **Your clicker will stop working on iframe slides.** Keyboard events don't cross into a
-   cross-origin iframe — so nothing steals your typing, but you also lose slide nav while
-   focus is in Strudel. Advance those slides by mouse-click.
+1. **Your clicker will stop working on the strudel.cc iframe slide.** Keyboard events don't
+   cross into a cross-origin iframe — so nothing steals your typing, but you also lose slide
+   nav while focus is in Strudel. Advance that slide by mouse-click.
+   The **pads are different**: same-page, so `StrudelPad` traps keydown/keyup at its root.
+   That trap is load-bearing — Slidev binds shortcuts to `window` via `useMagicKeys` and only
+   ignores `INPUT`/`TEXTAREA`/`BUTTON`/`A`, while CodeMirror is a *contenteditable div*.
+   Verified 2026-08-20: without the trap, typing `sound("bd*4")` fires `d` (dark mode) and
+   `o` (overview) mid-demo; with it, nothing but the code changes.
 2. Slidev's iframe layout sets no `allow=` attribute. Write a raw
    `<iframe … allow="autoplay">` for slides that must make noise.
 3. **The MCP cannot drive the slide's iframe.** It drives its own Playwright Chromium
@@ -270,7 +289,7 @@ Figma Slides (no arbitrary web embed), Tome (dead — shut down 2025-04-30), Plu
 | `docs/student/pre-work-email.md` | Draft email to send ~1 week ahead | presenter |
 | `docs/strudel/prompts.md` | **Prompt library** — the three modes | 🎓 students |
 | `docs/strudel/primer.md` | Part 1 = the 15-min teaching arc · Part 2 = reference | presenter |
-| `docs/strudel/demo-reggae.md` | **The core demo script** — prompts, what to say in each pause, fallbacks | presenter |
+| `docs/strudel/demo-reggae.md` | **The core demo script** — prompts, what to say in each pause, and the 4 tested fallback URLs | presenter |
 | `docs/strudel/demo-patterns.md` | Tested patterns, the generic build-a-beat arc | presenter |
 | `slides/` | The Slidev deck (+ its rehearsal gotchas in `slides/README.md`) | presenter |
 | `docs/setup/` | Per-platform, per-client setup detail · `archive/` = dropped clients | both |
