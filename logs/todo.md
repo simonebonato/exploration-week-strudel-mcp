@@ -58,11 +58,14 @@ Status legend: [ ] todo · [~] in progress · [x] done · [!] blocked · [–] d
 - [ ] `npx skills add slidevjs/slidev` (installs for Claude Code + Codex)
 - [x] Live strudel.cc iframe slides in the deck (using `layout: iframe-right`)
 - [ ] Swap to a raw `<iframe … allow="autoplay">` on the slides that must make noise
+- [x] Deck builds clean; all 24 slides render, no page errors; live strudel.cc iframe
+      confirmed loading inside a slide (verified 2026-08-20)
 - [ ] Rehearse: mouse-click to advance on iframe slides (the clicker will not work there)
 - [ ] `slidev build` → offline check with wifi off
 - [ ] Warm the Strudel sample cache online: play every sound you plan to demo
 
 ## Slice F — Verify + de-risk
+> Full protocol with pass criteria: `docs/rehearsal.md`. Run of show: `docs/run-of-show.md`.
 - [ ] Play a pattern from **Codex** end-to-end (only Claude Code has proven audio)
 - [ ] Verify what `analyze` and `audio_capture` actually return — the "three levels"
       segment claims capabilities that need re-checking before you teach them

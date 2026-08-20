@@ -222,6 +222,8 @@ Figma Slides (no arbitrary web embed), Tome (dead — shut down 2025-04-30), Plu
 | --- | --- | --- |
 | `AGENTS.md` / `CLAUDE.md` | Durable facts (byte-identical apart from the title — keep in sync) | agents |
 | `docs/student/START-HERE.md` | **The single student front door.** One page, one URL | 🎓 students |
+| `docs/run-of-show.md` | **What you do on the day**, minute by minute | presenter |
+| `docs/rehearsal.md` | **How to test it yourself** — 9 tests with pass criteria | presenter |
 | `docs/student/pre-work-email.md` | Draft email to send ~1 week ahead | presenter |
 | `docs/strudel/prompts.md` | **Prompt library** — the three modes | 🎓 students |
 | `docs/strudel/primer.md` | Part 1 = the 15-min teaching arc · Part 2 = reference | presenter |

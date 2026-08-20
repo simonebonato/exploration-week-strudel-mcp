@@ -61,6 +61,8 @@ codex  mcp add strudel -- live-coding-music-mcp       # Codex
 | [`CLAUDE.md`](CLAUDE.md) / [`AGENTS.md`](AGENTS.md) | Durable project facts — read first |
 | 🎓 [`docs/student/START-HERE.md`](docs/student/START-HERE.md) | **The student front door** — one page, everything they need |
 | 🎓 [`docs/strudel/prompts.md`](docs/strudel/prompts.md) | **Prompt library** — MAKE / TEACH ME / GIVE ME OPTIONS |
+| [`docs/run-of-show.md`](docs/run-of-show.md) | **What you do on the day**, minute by minute |
+| [`docs/rehearsal.md`](docs/rehearsal.md) | **How to test it yourself** — 9 tests, pass criteria, priorities |
 | [`docs/strudel/primer.md`](docs/strudel/primer.md) | The 15-minute teaching arc, then reference |
 | [`docs/strudel/demo-reggae.md`](docs/strudel/demo-reggae.md) | **The core demo** — prompts, what to say in each pause, fallbacks |
 | [`slides/`](slides/) | Slidev deck + its rehearsal gotchas |
@@ -83,7 +85,8 @@ codex  mcp add strudel -- live-coding-music-mcp       # Codex
 | Prompt library (three modes) | ✅ written — prompts not yet run against a live agent |
 | Core demo script (reggae) | ✅ written — **patterns not yet play-tested** |
 | Slidev deck | ✅ scaffolded — `npm install` + rehearsal pending |
-| Rehearsal + recovery playbook | ⬜ stub created, to fill during testing |
+| Run of show + rehearsal protocol | ✅ written — [rehearsal.md](docs/rehearsal.md) |
+| Rehearsal actually run | ⬜ **9 tests pending — start with the Windows dry-run** |
 
 > [!NOTE]
 > **Four facts to remember**
