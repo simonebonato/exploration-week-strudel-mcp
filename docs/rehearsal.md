@@ -10,8 +10,8 @@ Legend: 🔴 blocking (workshop fails without it) · 🟡 important · ⚪ nice 
 | 1 | Your own machine, end to end | 🔴 | 10 min | ✅ done 2026-07-01 (Claude Code only) |
 | 2 | Codex audio parity | 🟡 | 10 min | ⬜ |
 | 3 | Does `analyze` do what the deck claims? | 🟡 | 15 min | ✅ **done 2026-08-20 — analyze passes, audio_capture broken** |
-| 4 | Play-test every reggae pattern | 🔴 | 30 min | ⬜ |
-| 5 | URL round-trip (the save button) | 🔴 | 5 min | ⬜ |
+| 4 | Play-test every reggae pattern | 🔴 | 30 min | ⬜ **still unheard — the live run does not cover this** |
+| 5 | URL round-trip (the save button) | 🔴 | 5 min | ✅ **passed 2026-08-20** |
 | 6 | Every prompt against a live agent | 🟡 | 60 min | ⬜ |
 | 7 | **Windows dry-run** | 🔴 | 90 min | ⬜ |
 | 8 | Deck rehearsal | 🔴 | 30 min | ⬜ |
@@ -95,6 +95,19 @@ in particular:
 **Fix the file as you go.** Likely suspects: sample names (`rim` vs `sd`), whether the
 chords need `.clip()` to sound staccato, and whether `setcpm(75/4)` feels right.
 
+> [!IMPORTANT]
+> **2026-08-20 — the live demo ran perfectly, agent unaided.** That is genuinely good news
+> for the demo, but it does **not** close this test. The agent's output and the fallback
+> patterns are different code; the fallbacks remain unheard.
+>
+> **Better plan than play-testing my sketches: replace them.** Next time the demo runs,
+> copy the strudel.cc URL at each step and paste those patterns into `demo-reggae.md`.
+> Then the fallbacks are known-good — heard, in this room, on this machine — instead of
+> hopeful. Delete the ⚠️ banner at the top of that file when you do.
+>
+> ⚠️ Nothing is persisted automatically. `pattern_store` only writes when explicitly asked,
+> and `patterns/` is gitignored. **Copy the URL during the run or the patterns are gone.**
+
 ⚪ Also worth doing: patterns 3, 4 and 5 in [`strudel/demo-patterns.md`](strudel/demo-patterns.md)
 have never been heard either — only #2 was.
 
@@ -109,8 +122,10 @@ You tell students in three places that copying the URL saves their work. Prove i
 3. Open a **private/incognito window**, paste, load
 
 **Pass:** the same code appears and plays the same thing.
-**If it fails:** the entire save-your-work story collapses and needs replacing before the
-pre-work email goes out.
+
+### ✅ Result, 2026-08-20
+
+**Passed.** The save-your-work rule in `START-HERE.md`, `prompts.md` and the deck is sound.
 
 ---
 

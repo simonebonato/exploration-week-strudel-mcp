@@ -51,7 +51,9 @@ Status legend: [ ] todo · [~] in progress · [x] done · [!] blocked · [–] d
 ## Slice D — Core demo (reggae, live)
 - [x] Exact prompt sequence written → `docs/strudel/demo-reggae.md`
 - [x] Fallback pattern written for each step (in demo-reggae.md; `patterns/` is gitignored)
-- [ ] **Play-test every fallback pattern — none has been heard yet**
+- [ ] **Fallback patterns still unheard.** The 2026-08-20 live run worked (agent unaided),
+      but that doesn't cover them. Best fix: capture the agent's ACTUAL output next run
+      (copy the strudel.cc URL per step) and replace the sketches in demo-reggae.md
 - [x] Scripted what you SAY during each agent pause (latency = the teaching slot)
 - [ ] Rehearse end-to-end on the demo machine
 
