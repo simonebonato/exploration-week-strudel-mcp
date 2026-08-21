@@ -69,7 +69,13 @@ for this server** and a curious student will catch it. Teach the true version:
 - 🐛 **`brightness` is broken — ignore it.** It's derived from `centroid`, which is in FFT
   *bin index* units (0–511), but compared against thresholds of 500/200 that were clearly
   written for Hz. `'bright'` would need a centroid above ~21 kHz, so effectively everything
-  reports `"dark"`. Use the raw `bass`/`treble` numbers instead.
+  reports `"dark"`. Use the raw `bass`/`treble` numbers instead. Re-confirmed 2026-08-21 on
+  a track built deliberately bright (major key, `lpf(2000–3000)`): still `"dark"`.
+- 🐛 **`tempo` and `rhythm` are broken too (2026-08-21).** On a six-layer arrangement that
+  was audibly playing, `include:["rhythm"]` returned `complexity: 0, density: 0, onsets: []`
+  and `include:["tempo"]` returned `bpm: 0, confidence: 0, "No tempo detected."`
+  **Only `spectrum` is usable — ask for it explicitly** (`analyze({include:["spectrum"]})`)
+  and never demo the tempo or rhythm fields.
 - 🐛 **`audio_capture` is structurally broken in v4.0.0.** It uses the same
   `GainNode.prototype.connect` interception trick as the analyzer — but its
   `injectRecorder()` is called **lazily**, on first use (`server.js:442`), by which time
@@ -83,6 +89,13 @@ for this server** and a curious student will catch it. Teach the true version:
 → **You are the ears.** Feedback must be descriptive, not evaluative: "the drums feel too
 busy," not "that sounds bad." This transfers directly to Blender ("it can't see your
 render").
+
+**The fourth level, found 2026-08-21: it cannot tell you when it's guessing.** Asked why a
+broken pattern didn't work, the agent gave the *correct fix* (a missing `$:`) with a
+*fabricated reason* ("that's a syntax error" — it isn't; `transpile_pattern` shows the code
+parses fine, because `$:` is a JS labelled statement). The verified half and the invented
+half were indistinguishable in the output. Teach it alongside "you are the ears": **take
+the fix, be sceptical of the story.** Same lesson at the Blender station.
 
 ## The prompt library: three modes (decided 2026-08-20)
 
@@ -143,6 +156,9 @@ model at high effort does not transfer to a student on defaults.
 | Live reggae demo, agent unaided | **Claude Sonnet, LOW effort** | 2026-08-20 — worked perfectly. Below the default → students on defaults are safe |
 | `analyze` returns real audio measurements | Claude Sonnet, high effort | 2026-08-20 |
 | strudel.cc URL round-trips (the save rule) | Claude Sonnet, high effort | 2026-08-20 |
+| **The whole prompt library** (17 of 21 prompts) | **Claude Sonnet, LOW effort** | 2026-08-21 — see [`logs/prompt-test-2026-08-21.md`](logs/prompt-test-2026-08-21.md). "Wait for me before continuing" honoured every time |
+| `arrange()` sectioned song structure, unprompted | Claude Sonnet, low effort | 2026-08-21 |
+| Agent critiques the *student's* hand-edits (`get_pattern` sees them) | Claude Sonnet, low effort | 2026-08-21 |
 
 **Budget implication:** colleagues reported Sonnet works and Opus "appeared better at
 correcting problems." The demo building cleanly on **Sonnet** means the workshop does not
@@ -218,6 +234,34 @@ bare bin name, not `npx`, not `cmd /c`. See the install section above and
 
 ⚠️ Each client spawns its **own** server instance → its **own** Chromium window. Run one
 client at a time.
+
+## 🔴 Closing the Chromium window kills the session unrecoverably (found 2026-08-21)
+
+Hit twice in one day. Close the browser window and every browser-backed tool returns
+`page.evaluate: Target page, context or browser has been closed` — **forever**. Nothing in
+the server recovers it:
+
+- `init` returns **`"Already initialized"`** and relaunches nothing
+- `diagnostics({level:"status"})` reports `initialized: true`, even `playing: true`, from
+  cache — **it will confidently tell you the dead session is alive**
+- `session create` → `waitForFunction: Timeout 30000ms exceeded`; `session destroy` →
+  `Session 'default' not found`; `browser_window show` → same closed-target error
+- opening strudel.cc by hand doesn't help — the MCP drives its **own** Playwright context
+
+**The only fix is client-side: reconnect the MCP server** (`/mcp` in Claude Code; fresh
+session in Codex).
+
+> **The tell:** a healthy fresh start returns `"Strudel initialized successfully"`. If
+> `init` says `"Already initialized"` when you expected a fresh launch, the session is dead.
+
+This is a **student-facing** risk — closing the window is the most obvious thing a confused
+beginner does. Fixed in `START-HERE.md` and `setup/recovery-playbook.md`, both of which
+previously gave the wrong advice ("ask the agent to initialize again").
+
+Unrelated tool notes from the same run: `validate_pattern_local` reports **every** `$:`
+pattern as invalid (`s(...).p is not a function`) — a false negative on most agent output;
+use `transpile_pattern` instead. Both run fine without a browser. And `edit_pattern`
+`mode=replace` replaces only the **first** match and does not auto-play.
 
 ## Slide deck: Slidev (decided 2026-08-20)
 
@@ -295,6 +339,7 @@ Figma Slides (no arbitrary web embed), Tome (dead — shut down 2025-04-30), Plu
 | `docs/setup/` | Per-platform, per-client setup detail · `archive/` = dropped clients | both |
 | `docs/prd/` | PRDs (2026-08-20 is current; 2026-07-01 superseded) | presenter |
 | `logs/` | **Presenter-only** working notes: install log, TODO, costs, meetings | presenter |
+| `logs/prompt-test-2026-08-21.md` | **Rehearsal test 6 evidence** — every prompt, verdict, tested URLs, and the tool bugs found | presenter |
 
 ⚠️ **Privacy:** the repo is student-facing. `logs/` contains the FHNW budget discussion
 and vendor failure notes. Keep those out of anything published, or move them private.
@@ -328,6 +373,13 @@ and vendor failure notes. Keep those out of anything published, or move them pri
     material clearly separated. No git knowledge assumed. (2026-08-20)
 15. **Dropped: feeding audio to the LLM** (old item 16). Claude Code and Codex don't accept
     audio input. The idea survives as the "describe the sound in words" lesson. (2026-08-20)
+16. **The prompt library is verified on Sonnet at LOW effort** (rehearsal test 6). One
+    prompt dropped ("gradually gets stranger over two minutes" — too slow to pay off, too
+    hard to hear); two added (what `$:` means, and "why doesn't this work?" with pasted
+    broken code). (2026-08-21)
+17. **Teach a fourth level of machine perception: it cannot tell you when it's guessing.**
+    Found when the agent paired a correct fix with a fabricated explanation. Sits next to
+    "you are the ears" and transfers to Blender. (2026-08-21)
 
 ## Conventions
 

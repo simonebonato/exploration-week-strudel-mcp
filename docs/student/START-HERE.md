@@ -196,7 +196,7 @@ Work down this list. Most problems are the first three.
 | --- | --- |
 | **No sound**, but the browser is open and something looks like it's playing | **Click once inside the browser window.** Browsers mute pages until you interact with them. Then check your volume and that headphones are actually selected. |
 | The agent changed the code but the **music didn't change** | Press the **`update`** button at the top right of strudel.cc (or Ctrl/Cmd+Enter in the editor). |
-| The browser window **closed or crashed** | Ask the agent: *"Initialize Strudel again."* |
+| The browser window **closed or crashed**, and now every request fails | **Don't ask the agent to initialize again — that won't fix it**, and the agent will happily tell you everything is fine. Reconnect the server instead: in Claude Code type **`/mcp`** and reconnect; in Codex, quit and start a fresh session. *(Try not to close that browser window in the first place — the agent can't reopen it.)* |
 | Agent says it **can't find the tools** / server not connected | Close your agent completely and start a fresh session — tools only load at startup. If still missing, re-run step 3. |
 | **Windows:** server won't start, or "timed out" | You probably registered the short name. Re-register using the `node "C:\...\dist\index.js"` form in step 3 — that's exactly what it's for. |
 | Everything is **weirdly slow or two browser windows** appeared | You have two agents running. Quit one — each one starts its own browser. |

@@ -233,7 +233,7 @@ voluntary. Get out of the way.
 | Agent writes code but no sound | Click inside the Chromium window; press **update** in strudel.cc |
 | Agent produces something that isn't reggae | **Use it.** *"That's not reggae — what's missing?"* It'll diagnose its own output and you get a better teaching moment than the happy path |
 | Agent stalls or errors | Open the matching URL from [the ladder](#the-tested-fallback-ladder), say *"I'll take this one"*, keep talking. Nobody notices |
-| Browser dies | *"Initialize Strudel again."* |
+| Browser dies / you closed the window | **Reconnect the MCP server** — `/mcp` in Claude Code. Asking the agent to *"initialize again"* will **not** work: it answers `"Already initialized"` and relaunches nothing (verified twice, 2026-08-21). Cover the gap with a URL from [the ladder](#the-tested-fallback-ladder) |
 | Running long | Skip step 4 (bass). Steps 2, 3 and 6 are the demo; everything else is garnish |
 
 ## Pre-flight checklist

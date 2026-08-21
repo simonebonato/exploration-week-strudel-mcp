@@ -100,6 +100,15 @@ drafted in `docs/setup/antigravity-cli.md`, verify live before the session.
      window had been closed underneath the server. Recovery: call `init` again to relaunch.
      Lesson: don't close the browser window mid-demo; if it dies, re-`init`.
 
+     > ⚠️ **Contradicted 2026-08-21 — do not follow the recovery advice above.** The same
+     > failure was hit twice and `init` did **not** relaunch: it returned
+     > `"Already initialized"` while the browser stayed dead, and `session create/destroy`
+     > and `browser_window show` all failed too. Only a client-side MCP reconnect (`/mcp`)
+     > recovered it. Either the behaviour changed between versions or the 07-01 recovery
+     > worked for another reason. **The reconnect always works, so that's what the docs now
+     > say.** Worth one deliberate re-test if anyone wants to pin down the difference.
+     > See `logs/prompt-test-2026-08-21.md` § A.
+
 ### 2026-07-01 — Slice 4 (Antigravity CLI) verified
 
 - Antigravity CLI installed by the user. Command is **`agy`** (`~/.local/bin/agy`).

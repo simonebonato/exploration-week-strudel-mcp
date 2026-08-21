@@ -6,7 +6,8 @@ Windows dry-run, rehearsal). Don't ship this to students until each row has been
 
 | Symptom | First move | Verified fix / notes |
 | --- | --- | --- |
-| Chromium window closed / crashed mid-session | Ask the agent: "Initialize Strudel again" (`init` relaunches the browser) | ⬜ to verify |
+| **Chromium window closed** / crashed mid-session — every tool returns `Target page, context or browser has been closed` | **Reconnect the MCP server in your client** (`/mcp` in Claude Code). Do **not** bother asking the agent to initialize again | ✅ hit twice + fixed 2026-08-21. **`init` does NOT recover this** — it returns `"Already initialized"` and relaunches nothing. `session create` times out, `session destroy` says the default session doesn't exist, `browser_window show` fails. Client-side reconnect is the only fix. [Evidence](../../logs/prompt-test-2026-08-21.md#a--the-browser-session-dies-and-nothing-in-the-server-recovers-it) |
+| Agent insists everything is fine but nothing plays | Same as above — check whether `init` says `"Already initialized"` when you expected a fresh launch. That string **is** the symptom | ✅ 2026-08-21. `diagnostics` reports `initialized: true` (and even `playing: true`) from cache while the browser is dead. **Don't trust it to tell you the session is alive** |
 | Browser open, pattern playing, **no sound** | Click once inside the Chromium window (audio needs a user gesture); check OS volume/output device | ⬜ to verify |
 | Agent changed the code, **music didn't change** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) | ✅ hit + fixed 2026-08-18 |
 | Client shows server **not connected** | `which live-coding-music-mcp` (Win: `where`); reinstall `@4.0.0` if missing; restart the client (tools load at session start) | ⬜ to verify |

@@ -10,19 +10,21 @@ Legend: 🔴 blocking (workshop fails without it) · 🟡 important · ⚪ nice 
 > unless you know what it worked *on*. A pass on a big model at high effort does not
 > transfer to a student on defaults.
 >
-> Most results so far: **Claude Sonnet, high effort, via Claude Code** (2026-08-20).
-> The one exception is the important one — **test 2b passed on Sonnet at *low* effort**,
-> below the default. See below.
+> Results so far are all **Claude Sonnet via Claude Code**. Tests 1, 3 and 5 ran at *high*
+> effort; **tests 2b, 4 and 6 passed at *low* effort** — below the Claude Code default.
+> Those three are the ones that matter, because between them they cover the core demo, the
+> fallback patterns and the entire prompt library. **Nothing in this workshop has needed
+> more than a default-effort Sonnet.**
 
 | # | Test | Priority | Time | Status |
 |---|---|---|---|---|
 | 1 | Your own machine, end to end | 🔴 | 10 min | ✅ 2026-07-01 (Claude Code) |
 | 2 | Codex audio parity | 🟡 | 10 min | ⬜ |
 | 2b | **Student conditions: default effort** | 🔴 | 20 min | ✅ 2026-08-20 · Sonnet/**low** — passed |
-| 3 | Does `analyze` do what the deck claims? | 🟡 | 15 min | ✅ 2026-08-20 · Sonnet/high — analyze passes, audio_capture broken |
+| 3 | Does `analyze` do what the deck claims? | 🟡 | 15 min | ✅ 2026-08-20 · Sonnet/high — `spectrum` passes; `audio_capture`, `tempo`, `rhythm`, `brightness` all broken |
 | 4 | Play-test every reggae pattern | 🔴 | 30 min | ✅ 2026-08-20 · Sonnet/low — sketches **replaced** with heard patterns |
 | 5 | URL round-trip (the save button) | 🔴 | 5 min | ✅ 2026-08-20 · Sonnet/high |
-| 6 | Every prompt against a live agent | 🟡 | 60 min | ⬜ |
+| 6 | Every prompt against a live agent | 🟡 | 60 min | ✅ 2026-08-21 · Sonnet/**low** — 17/21 run, 1 dropped, 4 still ⬜ |
 | 7 | **Windows dry-run** | 🔴 | 90 min | ⬜ |
 | 8 | Deck rehearsal | 🔴 | 30 min | ⬜ |
 | 9 | Full timed dress rehearsal | 🔴 | 2 h | ⬜ |
@@ -129,6 +131,20 @@ Also don't use `analyze`'s `brightness` field — it compares an FFT-bin-index c
 against Hz-scale thresholds, so it reports `"dark"` for essentially everything. Full
 caveats in `AGENTS.md` § analyze caveats.
 
+#### Extended 2026-08-21 · Sonnet, low effort — **`tempo` and `rhythm` are broken too**
+
+Called on a six-layer trip-hop arrangement that was audibly playing (`isPlaying: true`,
+`average 33.7`, `bass 214`), `include: ["rhythm"]` returned `complexity: 0, density: 0,
+onsets: []` and `include: ["tempo"]` returned `bpm: 0, confidence: 0, "No tempo detected."`
+
+**Only `spectrum` is trustworthy. Ask for it explicitly** — `analyze({include:
+["spectrum"]})` — and never demo the tempo or rhythm fields. `brightness` was also
+re-confirmed broken, on a track built deliberately to be bright, which still read `"dark"`.
+
+Separately: **`validate_pattern_local` reports every `$:` pattern as invalid**
+(`s(...).p is not a function`) — a false negative on most of what the agent writes. Use
+`transpile_pattern` if you need a syntax check. Both run without the browser.
+
 ---
 
 ## 4 🔴 Play-test every reggae pattern
@@ -205,6 +221,48 @@ teaches them the tool doesn't work.
 
 Pay special attention to the GIVE ME OPTIONS ones — "wait for me before continuing" is the
 instruction agents most often ignore. If it barrels ahead, reword until it doesn't.
+
+### ✅ Result, 2026-08-21 · Claude Sonnet, **low** effort
+
+**Full evidence: [`../logs/prompt-test-2026-08-21.md`](../logs/prompt-test-2026-08-21.md).**
+
+**The library works.** 17 of 21 prompts exercised; all but one did what the prompt implies,
+first try, in one turn. Run at **low** effort — below the Claude Code default — so this
+extends test 2b's "students on defaults are safe" finding from the reggae demo to the whole
+library.
+
+**"Wait for me before continuing" was honoured every time**, which is the instruction this
+test exists to stress. Two prompts stood out, both ones a student would never invent alone:
+*three versions / three moods / same tempo and key* (MAKE) and *ask me questions until you
+work out what's bothering me* (GIVE ME OPTIONS — it fires Claude Code's interactive
+multiple-choice picker, which lands far better than a wall of text).
+
+**One prompt dropped:** *"gradually gets stranger over two minutes"* — slow to pay off and
+the changes were hard to hear. Removed from `prompts.md`; text preserved in the log so the
+call is reversible.
+
+**Two prompts added** to `prompts.md`, both of which came up unprompted because they're
+things students actually do: asking what `$:` means, and pasting broken code and asking why
+it doesn't work.
+
+**The best accidental find:** on that broken-code prompt, the agent gave the **right fix
+with a wrong reason** — it called a missing `$:` a "syntax error", but `transpile_pattern`
+proves the code parses fine (`$:` is a JS labelled statement; the bare line just becomes the
+return value instead of a registered layer). Nothing in the output distinguished the
+correct half from the invented half. That's *"you are the ears"* extended to *"you are also
+the fact-check"*, and it transfers to Blender unchanged — worth a scripted beat in the
+three-levels segment.
+
+**Still ⬜:** *why does this sound muddy* · *trip-hop → trance* · *save this version as …* ·
+the single fallback prompt verbatim. Plus *"make this dark in three stages"* needs one clean
+run **to the end** — stages 1 and 2 ran and the presenter changed direction before stage 3.
+
+> [!WARNING]
+> Two 🔴 operational findings came out of this run, both written up in the log:
+> **the browser session dies unrecoverably if you close the Chromium window** (see
+> [`setup/recovery-playbook.md`](setup/recovery-playbook.md) row 1 — the old advice there
+> was wrong), and **`analyze`'s `tempo` and `rhythm` are as broken as `brightness`** —
+> only `spectrum` is usable.
 
 ---
 

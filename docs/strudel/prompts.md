@@ -37,11 +37,12 @@ Copy any of these:
 > Start with just a kick drum. Then **add one instrument at a time** — I'll tell you when
 > to add the next one.
 
-> Build a track that **gradually gets stranger over two minutes**: start completely
-> normal, end somewhere I wouldn't have predicted.
-
-> Give me **three versions of the same track** with three different moods: one hopeful,
+> ⭐ Give me **three versions of the same track** with three different moods: one hopeful,
 > one anxious, one exhausted. Same tempo, same key.
+
+⭐ is the one that surprised us most in testing. Holding the tempo and key fixed is what
+makes it work — it forces the agent to carry the mood with *everything else*, and you get a
+three-way A/B you can flip between.
 
 ---
 
@@ -65,6 +66,20 @@ builds** — which means you learn the thing while you make the thing.
 > each one does before you change anything.
 
 > **Teach me the Strudel commands I need** to understand the code you just wrote.
+
+> What is the **`$:`** for? *(You will wonder. It's at the start of nearly every line the
+> agent writes.)*
+
+> **Why doesn't this work?** *(paste your broken code)*
+
+> [!WARNING]
+> That last one is worth doing at least once — and worth double-checking the answer to.
+> In testing, the agent found the real bug and gave working code, then explained the cause
+> **completely wrongly** (it called a missing `$:` a "syntax error"; it isn't one). The
+> correct fix and the invented explanation looked exactly alike.
+>
+> This is the same lesson as "it can't hear it", one step further: **it can't tell you when
+> it's guessing.** Take the fix, be sceptical of the story.
 
 ### Teach me the music
 
@@ -125,6 +140,7 @@ This matters more than any prompt above.
 | ✅ **Read** your code | Perfectly. It wrote most of it. |
 | ✅ **Measure** the output | It has tools that report *is it playing, how loud, where's the energy* |
 | ❌ **Judge** whether it sounds good | It has no ears and no taste |
+| ❌ **Tell you when it's guessing** | A fix it verified and a reason it invented come out sounding identical |
 
 So this is a wasted message:
 

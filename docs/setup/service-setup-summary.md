@@ -137,7 +137,9 @@ Edit the config, then restart the app:
 2. `live-coding-music-mcp` resolves on PATH ✔
 3. Client shows the server connected/enabled ✔
 4. Fresh session: *"Initialize Strudel and play a kick"* → **Chromium opens + sound** ✔
-5. Browser window died mid-demo? → ask for *"Initialize Strudel"* again (`init` relaunches).
+5. Browser window died mid-demo? → **reconnect the MCP server in your client** (`/mcp` in
+   Claude Code). Do *not* rely on asking the agent to initialize again — verified twice on
+   2026-08-21 that `init` returns `"Already initialized"` and relaunches nothing.
    More: [recovery-playbook.md](./recovery-playbook.md).
 
 ## 4. Windows verification TODO (before the event)

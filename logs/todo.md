@@ -35,7 +35,13 @@ Status legend: [ ] todo · [~] in progress · [x] done · [!] blocked · [–] d
 - [x] Strudel intro rebuilt on ONE idea (the cycle) — `docs/strudel/primer.md` is now
       Part 1 (the 15-min arc, what you teach) + Part 2 (reference, what you don't)
 - [x] Prompt library written: `docs/strudel/prompts.md` — three modes, ambitious examples
-      - [ ] **Run every prompt at least once against a real agent before shipping it**
+      - [x] **Run every prompt at least once against a real agent before shipping it** —
+            done 2026-08-21, Sonnet/**low**. 17/21 run, 1 dropped ("gets stranger over two
+            minutes"), 2 added (`$:`, "why doesn't this work?"). Evidence:
+            `logs/prompt-test-2026-08-21.md`
+      - [ ] Run the 4 remaining prompts: *why does this sound muddy* · *trip-hop → trance* ·
+            *save this version as …* · the single fallback prompt verbatim
+      - [ ] Re-run *"make this dark in three stages"* **to the end** (stage 3 never ran)
 - [x] "Three levels of machine perception" segment — in prompts.md, START-HERE.md, the
       deck, and as demo step 6
 - [x] Save-your-work rule documented everywhere
@@ -79,6 +85,17 @@ Status legend: [ ] todo · [~] in progress · [x] done · [!] blocked · [–] d
       "measures the output" claim. `audio_capture` is broken (lazy injection misses the
       GainNode intercept); removed from the wording. `brightness` field is broken too.
 - [ ] Optional: try the audio_capture workaround (force injection, then restart playback)
+- [x] **Found 2026-08-21 🔴 closing the Chromium window kills the session unrecoverably.**
+      `init` says `"Already initialized"` and relaunches nothing; `diagnostics` reports
+      `initialized: true` from cache. Only fix is a client-side MCP reconnect (`/mcp`).
+      **`START-HERE.md` and `recovery-playbook.md` both gave the wrong advice — corrected.**
+- [x] Found 2026-08-21: `analyze`'s **`tempo` and `rhythm` are broken** like `brightness` —
+      only `spectrum` is usable. Caveats updated in AGENTS.md/CLAUDE.md
+- [x] Found 2026-08-21: `validate_pattern_local` false-negatives on **every** `$:` pattern
+      (`.p is not a function`) — use `transpile_pattern` instead
+- [ ] Decide: make "it can't tell you when it's guessing" a scripted beat in the
+      three-levels segment (decision 17). Needs a slide + a line in the run of show
+- [ ] Watch token burn over a full-length session — contained so far, unproven over hours
 - [x] Investigated non-Node / smaller install (2026-08-20). Findings in AGENTS.md:
       Node is unavoidable · keep the global install (npx breaks Codex's 10s timeout) ·
       `--no-shell` and the bundled playwright CLI are free wins, now in the docs ·
