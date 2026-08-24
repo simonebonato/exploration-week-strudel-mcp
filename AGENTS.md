@@ -186,11 +186,16 @@ launch — student laptop, school wifi — is exactly when it fails. It also sav
 Plus `npx` on Windows hits [openai/codex#16229](https://github.com/openai/codex/issues/16229)
 (open).
 
-**Two free wins, now in the docs:**
+**The browser install is optional.** The MCP server usually downloads Chromium
+automatically the first time it runs. If it does, students can skip the manual browser
+install entirely. Only fall back to the bundled-CLI command if the agent reports a missing
+browser.
+
+**Two free wins, now in the docs (for when you do install manually):**
 1. `--no-shell` skips the headless shell: **−95 MB macOS / −115 MB Windows.** Safe only
    because we run headed — breaks if anyone sets `config.json → headless: true`.
 2. Use the server's **bundled** playwright CLI, not `npx playwright`. The server depends on
-   `playwright@^1.52.0` — a **floating** range — so `npx playwright` can download a
+   `playwright@^1.52.0` — a **floating** range, so `npx playwright` can download a
    different browser revision than the server looks for. The bundled CLI always matches,
    and avoids duplicating ~45 MB into `~/.npm/_npx`.
 
@@ -313,14 +318,15 @@ contradicted by its feature board), Canva (provider allow-list; Education is K-1
 Figma Slides (no arbitrary web embed), Tome (dead — shut down 2025-04-30), Plus AI
 ("live" embeds are auto-refreshing screenshots). Runner-up: Quarto revealjs.
 
-## Machine state (this demo machine, updated 2026-08-18)
+## Machine state (updated 2026-08-24)
 
 - Node v22.22.2, npm 10.9.7 — meets Node 22+ requirement.
 - MCP server installed globally (v4.0.0); Chromium 1228 installed (Playwright 1.61.1).
 - Claude Code: `strudel` server **connected** ✅; audio proven end-to-end (`analyze`
   confirmed sound, 2026-07-01).
 - Codex 0.137.0: `strudel` registered, `enabled` ✅ (live audio not yet tested).
-- Windows: **nothing verified yet** — dry-run planned before the event.
+- **Windows smoke-tested (2026-08-24):** install, absolute-`node` registration, and MAKE
+  prompts verified on real Windows hardware for both Claude Code and Codex.
 
 ## Where things live
 

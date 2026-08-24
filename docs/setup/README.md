@@ -35,6 +35,7 @@ flowchart LR
 | Need | Why | Check |
 | --- | --- | --- |
 | **Node.js 22+**, npm 10+ | runs the MCP server | `node -v` |
+| **Claude Code or Codex CLI** | the agent that talks to the server | `claude --version` or `codex --version` |
 | **Speakers / headphones** | to hear it | — |
 | Internet (first run) | loads strudel.cc | works offline after first load (PWA) |
 
@@ -42,12 +43,18 @@ flowchart LR
 
 ```bash
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
-
-# use the server's OWN bundled playwright CLI, and skip the headless shell
-node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" install chromium --no-shell
 ```
 
-> [!IMPORTANT]
+> [!TIP]
+> **The browser install is optional.** The MCP server usually downloads Chromium
+> automatically the first time it runs. Only run the line below if the agent complains that
+> the browser is missing.
+>
+> ```bash
+> # use the server's OWN bundled playwright CLI, and skip the headless shell
+> node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" install chromium --no-shell
+> ```
+>
 > **Why not `npx playwright install chromium`?** Two reasons, both measured (2026-08-20):
 > 1. The server depends on `playwright@^1.52.0` — a **floating** range. `npx playwright`
 >    resolves independently, so it can download a *different* browser revision than the one
@@ -58,8 +65,7 @@ node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwr
 > **`--no-shell`** skips the headless shell: **−95 MB on macOS, −115 MB on Windows.** Safe
 > only because we run headed. If anyone ever sets `config.json → headless: true`, this
 > breaks.
-
-> [!NOTE]
+>
 > The Playwright step prints an *"install your project's dependencies first"* warning.
 > **Ignore it** — Chromium still downloads. Expected for a globally-installed tool.
 

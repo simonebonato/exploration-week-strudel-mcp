@@ -12,8 +12,8 @@ will start making music. Then you'll take over and make something of your own.
 > line the moment it's typed. That's Strudel.
 
 > [!IMPORTANT]
-> **Do the "Before the workshop" bit at home.** It takes ~10 minutes and involves two
-> downloads. Doing it in the room, on room wifi, with 20 other people, is much less fun.
+> **Do the "Before the workshop" bit at home.** It takes ~10 minutes and involves three
+> installs. Doing it in the room, on room wifi, with 20 other people, is much less fun.
 
 ---
 
@@ -41,7 +41,35 @@ node -v
 You should see something like `v22.22.2`. **If the number after `v` is 22 or higher,
 you're good.** If it's lower, or you get an error, install again from the link above.
 
-### 2. Install the music server
+### 2. Install your AI agent
+
+You'll ask the music server for sounds through an AI agent. For this workshop we support
+**Claude Code** and **Codex**. Install **one** of them:
+
+| Agent | Install command |
+| --- | --- |
+| **Claude Code** | `npm install -g @anthropics/claude-code` |
+| **Codex** | `npm install -g @openai/codex` |
+
+In the same terminal window, type the command for the agent you chose and press Enter.
+You'll be told before the workshop which one to use; if you aren't sure, pick **Claude
+Code**.
+
+**Check it worked.** Type:
+
+```
+claude --version
+```
+
+or
+
+```
+codex --version
+```
+
+depending on which you installed. You should see a version number, not an error.
+
+### 3. Install the music server
 
 In that same terminal window, type this and press Enter:
 
@@ -49,22 +77,25 @@ In that same terminal window, type this and press Enter:
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 ```
 
-Then this one — it downloads a browser (~180 MB) and takes a couple of minutes. It's long;
-**copy-paste it, don't type it.**
-
-**Mac:**
-```
-node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" install chromium --no-shell
-```
-
-**Windows (PowerShell):**
-```
-node "$(npm root -g)\@williamzujkowski\live-coding-music-mcp\node_modules\playwright\cli.js" install chromium --no-shell
-```
-
+> [!TIP]
+> **You can skip the browser install.** The MCP server usually downloads Chromium
+> automatically the first time it runs. If it does, you're done. If the agent later says the
+> browser is missing, run the command below — it downloads ~180 MB and takes a couple of
+> minutes.
+>
+> **Mac:**
+> ```
+> node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" install chromium --no-shell
+> ```
+>
+> **Windows (PowerShell):**
+> ```
+> node "$(npm root -g)\@williamzujkowski\live-coding-music-mcp\node_modules\playwright\cli.js" install chromium --no-shell
+> ```
+>
 > A warning about *"install your dependencies first"* is harmless. Ignore it.
 
-### 3. Connect it to your AI agent
+### 4. Connect it to your AI agent
 
 You'll be told before the workshop which agent to use. Run **one** of these:
 
@@ -97,7 +128,7 @@ codex mcp add strudel -- node "C:\Users\you\AppData\Roaming\npm\node_modules\@wi
 > Let the command write the config for you. **Don't hand-edit the config file on Windows** —
 > backslashes in paths get mangled and it fails in a confusing way.
 
-### 4. Check it worked
+### 5. Check it worked
 
 **Claude Code:** run `claude mcp list` → you want to see `strudel` and the word
 **Connected**.

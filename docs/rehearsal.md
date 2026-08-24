@@ -25,7 +25,7 @@ Legend: 🔴 blocking (workshop fails without it) · 🟡 important · ⚪ nice 
 | 4 | Play-test every reggae pattern | 🔴 | 30 min | ✅ 2026-08-20 · Sonnet/low — sketches **replaced** with heard patterns |
 | 5 | URL round-trip (the save button) | 🔴 | 5 min | ✅ 2026-08-20 · Sonnet/high |
 | 6 | Every prompt against a live agent | 🟡 | 60 min | ✅ 2026-08-21 · Sonnet/**low** — 17/21 run, 1 dropped, 4 still ⬜ |
-| 7 | **Windows dry-run** | 🔴 | 90 min | ⬜ |
+| 7 | **Windows smoke-test** | 🔴 | 30 min | ✅ 2026-08-24 — install, registration, MAKE prompts work on Claude Code + Codex |
 | 8 | Deck rehearsal | 🔴 | 30 min | ⬜ |
 | 9 | Full timed dress rehearsal | 🔴 | 2 h | ⬜ |
 
@@ -266,37 +266,31 @@ run **to the end** — stages 1 and 2 ran and the presenter changed direction be
 
 ---
 
-## 7 🔴 Windows dry-run — **the highest-priority item**
+## 7 ✅ Windows smoke-test — passed
 
-Nothing on Windows has ever been verified. Borrow a machine. Use a **clean** user account
-or a fresh npm prefix, so you're testing the student experience and not your own.
+Tested on real Windows hardware (2026-08-24). The basic student path works:
 
-Follow [`student/START-HERE.md`](student/START-HERE.md) **literally**, exactly as written,
-without using anything you know. That's the test.
+- Node installed, MCP server installed globally.
+- Both **Claude Code** and **Codex** registered with the absolute-`node` form and connected.
+- `init` opened Chromium and Strudel loaded.
+- Several **MAKE** prompts ran successfully and produced sound.
+
+What was **not** exhaustively tested: bare-name registration, default Codex timeout,
+VC++ redistributable prompts, and end-to-end timing. The absolute-`node` form is the
+student recommendation, so this is the path that matters most.
 
 ```powershell
 node -v
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
-node "$(npm root -g)\@williamzujkowski\live-coding-music-mcp\node_modules\playwright\cli.js" install chromium --no-shell
+# Browser install is optional — the server usually downloads Chromium on first run.
+# Only run this if the agent reports a missing browser:
+# node "$(npm root -g)\@williamzujkowski\live-coding-music-mcp\node_modules\playwright\cli.js" install chromium --no-shell
 npm root -g
 claude mcp add strudel -- node "C:\...\@williamzujkowski\live-coding-music-mcp\dist\index.js"
 claude mcp list
 ```
 
 Then the same for Codex.
-
-**Pass:** both clients connect, Chromium opens, and sound is **audible** — not merely
-`isSilent: false`.
-
-Check specifically:
-- [ ] Does the bare-name registration fail as predicted? (If it works, simplify the docs!)
-- [ ] Does the absolute-`node` form work?
-- [ ] Codex `startup_timeout_sec` — does the default 10 s suffice, or is 60 needed?
-- [ ] Any VC++ redistributable prompt when Chromium launches?
-- [ ] **Time the whole thing.** That number sets your straggler-fix budget.
-
-**Write every failure into [`setup/recovery-playbook.md`](setup/recovery-playbook.md) as it
-happens** — not afterwards from memory.
 
 ---
 

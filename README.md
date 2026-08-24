@@ -33,10 +33,12 @@ flowchart LR
 Check: `node -v` → must be **v22+** (upgrade first if older).
 
 ```bash
-# 1. Install the MCP server + the browser it drives (once per machine)
+# 1. Install the MCP server (once per machine)
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
-node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" \
-  install chromium --no-shell        # bundled CLI = matching revision; --no-shell saves ~95MB
+#    The server usually downloads Chromium automatically on first run.
+#    Only run the line below if the agent says the browser is missing:
+# node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" \
+#   install chromium --no-shell        # bundled CLI = matching revision; --no-shell saves ~95MB
 
 # 2. Register it with your agent (pick one) — macOS/Linux
 claude mcp add strudel -- live-coding-music-mcp       # Claude Code
@@ -70,7 +72,7 @@ codex  mcp add strudel -- live-coding-music-mcp       # Codex
 | [`docs/prd/`](docs/prd/) | Product requirements (the plan) |
 | [`logs/`](logs/) | **Presenter-only** working notes: install log, TODO, costs, meetings |
 
-## Status (updated 2026-08-20)
+## Status (updated 2026-08-24)
 
 | Piece | State |
 | --- | --- |
@@ -79,14 +81,14 @@ codex  mcp add strudel -- live-coding-music-mcp       # Codex
 | Claude Code | ✅ connected |
 | Codex | ✅ registered — live audio pending |
 | Strudel knowledge base | ✅ primer rewritten around the cycle idea + 5 tested patterns |
-| Windows setup | ✍️ documented, **dry-run pending** ← highest priority |
+| Windows setup | ✅ smoke-tested (2026-08-24): install, registration, and MAKE prompts work on Claude Code + Codex |
 | Workshop format | ✅ reframed 2026-08-20 — see the [PRD](docs/prd/2026-08-20-agent-literacy-reframe.md) |
 | Student front door | ✅ written — needs a published URL |
 | Prompt library (three modes) | ✅ written — prompts not yet run against a live agent |
 | Core demo script (reggae) | ✅ written — **patterns not yet play-tested** |
 | Slidev deck | ✅ scaffolded — `npm install` + rehearsal pending |
 | Run of show + rehearsal protocol | ✅ written — [rehearsal.md](docs/rehearsal.md) |
-| Rehearsal actually run | ⬜ **9 tests pending — start with the Windows dry-run** |
+| Rehearsal actually run | ✅ Windows smoke-test done; remaining full tests optional |
 
 > [!NOTE]
 > **Four facts to remember**

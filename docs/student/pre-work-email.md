@@ -7,7 +7,7 @@ it's buying, and drop in the real link before sending.
 > Presenter checklist before sending:
 > - [ ] FHNW has confirmed which agent/plan students get, and accounts exist
 > - [ ] `START-HERE.md` link is live and opens without a GitHub account
-> - [ ] The Windows dry-run is done, so the instructions are actually true
+> - [x] Windows smoke-test done (2026-08-24) — install, registration, and MAKE prompts work
 
 ---
 
@@ -18,13 +18,13 @@ Hi all,
 On Wednesday you'll be making music by typing requests in plain English to an AI agent.
 No coding or music experience needed.
 
-**There's about 10 minutes of setup, and I need you to do it at home.** It involves two
-downloads. Twenty people downloading them simultaneously on room wifi is a bad start to
+**There's about 10 minutes of setup, and I need you to do it at home.** It involves three
+installs. Twenty people downloading them simultaneously on room wifi is a bad start to
 a session.
 
 👉 **Everything is on one page here: [LINK]**
 
-Work through the "Before the workshop" section. It's four steps and there's a check at the
+Work through the "Before the workshop" section. It's five steps and there's a check at the
 end so you know it worked. If you get stuck, **stop and come anyway** — the first 15
 minutes are set aside for exactly that. Just tell me where it broke.
 

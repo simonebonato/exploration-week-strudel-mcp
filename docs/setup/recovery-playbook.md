@@ -2,7 +2,8 @@
 
 One page to glance at when something dies during the workshop. **Status: stub** — fill in
 the "verified fix" column as failures are actually hit during testing (Mac test 2026-08-18,
-Windows dry-run, rehearsal). Don't ship this to students until each row has been exercised.
+Windows smoke-test 2026-08-24, rehearsal). Don't ship this to students until each row has
+been exercised.
 
 | Symptom | First move | Verified fix / notes |
 | --- | --- | --- |
@@ -11,7 +12,7 @@ Windows dry-run, rehearsal). Don't ship this to students until each row has been
 | Browser open, pattern playing, **no sound** | Click once inside the Chromium window (audio needs a user gesture); check OS volume/output device | ⬜ to verify |
 | Agent changed the code, **music didn't change** | Press **`update`** top right in strudel.cc (or Ctrl/Cmd+Enter) — [screenshot](../assets/strudel-update-button.png) | ✅ hit + fixed 2026-08-18 |
 | Client shows server **not connected** | `which live-coding-music-mcp` (Win: `where`); reinstall `@4.0.0` if missing; restart the client (tools load at session start) | ⬜ to verify |
-| Windows: server fails to spawn, or **times out** | `.cmd` shim bug (open upstream in both clients). Re-register with **absolute `node` + absolute `dist/index.js`** — see [service-setup-summary](./service-setup-summary.md). `cmd /c` is NOT a reliable fix | ⬜ to verify |
+| Windows: server fails to spawn, or **times out** | `.cmd` shim bug (open upstream in both clients). Re-register with **absolute `node` + absolute `dist/index.js`** — see [service-setup-summary](./service-setup-summary.md). `cmd /c` is NOT a reliable fix | ✅ 2026-08-24 — absolute-`node` form verified on real Windows hardware for Claude Code and Codex |
 | Server starts but can't find a browser | `npx playwright install` downloaded a mismatched revision. Re-run using the server's **bundled** playwright CLI | ⬜ to verify |
 | Student's plan/quota runs out mid-session | FHNW-funded plans (decided 2026-08-20). If it still happens: pair them with a neighbour — two people on one laptop is a fine creative setup | ⬜ to verify |
 | Agent produces something that isn't what was asked | Don't restart — ask it *"that's not X, what's missing?"*. Self-diagnosis is a better teaching moment than the happy path | ⬜ to verify |

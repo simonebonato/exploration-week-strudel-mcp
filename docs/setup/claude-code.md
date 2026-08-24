@@ -10,10 +10,16 @@
 
 ## Setup in 3 steps
 
+> [!IMPORTANT]
+> This guide assumes **Claude Code is already installed**. If not:
+> ```bash
+> npm install -g @anthropics/claude-code
+> ```
+> Then check: `claude --version` should print a version number.
+
 ```bash
 # 1. One-time install (skip if done)
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
-npx playwright install chromium
 
 # 2. Register the server
 claude mcp add strudel live-coding-music-mcp
@@ -21,6 +27,13 @@ claude mcp add strudel live-coding-music-mcp
 # 3. Confirm
 claude mcp list          # expect: strudel ... ✔ Connected
 ```
+
+> [!TIP]
+> **You can skip the browser install.** The server usually downloads Chromium automatically
+> the first time it runs. If the agent says the browser is missing, run:
+> ```bash
+> node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" install chromium --no-shell
+> ```
 
 > [!NOTE]
 > **Scope:** the default registration is **local** (this project folder only, written to
@@ -84,8 +97,8 @@ claude mcp add strudel -- node "C:\Users\you\AppData\Roaming\npm\node_modules\@w
 claude mcp list        # expect: strudel ... ✔ Connected
 ```
 
-> ⚠️ Researched from docs + issue threads on 2026-08-20, **not yet verified on real
-> Windows hardware.** The dry-run is the highest-priority open item.
+> ✅ Smoke-tested on Windows (2026-08-24): Claude Code registered with the absolute-`node`
+> form and ran MAKE prompts successfully.
 
 ## Reference
 

@@ -67,7 +67,7 @@ fails. The fix is ambitious seeds, not a mission ladder.
 
 | Risk | Mitigation |
 |---|---|
-| Windows setup unverified, 3 weeks out | R2 dry-run — the single highest-priority open item |
+| Windows setup smoke-tested | Full dry-run no longer a hard blocker; basic install + registration + MAKE prompts verified on real hardware |
 | Experimental MCP server fails live | Pre-saved pattern per demo step; latency is the teaching slot, so pauses read as intentional |
 | Conference wifi | Slidev builds offline; **warm the Strudel sample cache online beforehand** |
 | Deck iframe swallows the clicker | Advance iframe slides by mouse-click; rehearse |
@@ -77,7 +77,7 @@ fails. The fix is ambitious seeds, not a mission ladder.
 ## 7. Verification
 
 - **Setup:** a clean Windows machine reaches audible sound following only
-  `docs/student/START-HERE.md`, on both clients.
+  `docs/student/START-HERE.md`, on both clients. ✅ Smoke-tested (2026-08-24).
 - **Deck:** iframe accepts typing and plays audio, on the presentation machine, in the
   presentation browser, offline.
 - **Demo:** full reggae build rehearsed end-to-end; every step's fallback pattern tested.

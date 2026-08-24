@@ -26,7 +26,7 @@ Source: [`student/pre-work-email.md`](student/pre-work-email.md). Before you sen
 
 - [ ] FHNW has confirmed **which agent** students get, and accounts exist
 - [ ] `START-HERE.md` is published at a URL that opens **without a GitHub account**
-- [ ] The Windows dry-run is done, so the instructions in it are actually true
+- [x] Windows smoke-test done (2026-08-24) — install, registration, and MAKE prompts work
 
 ### T−1 day
 

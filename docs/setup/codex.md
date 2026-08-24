@@ -4,10 +4,16 @@
 
 ## Setup in 3 steps
 
+> [!IMPORTANT]
+> This guide assumes **Codex is already installed**. If not:
+> ```bash
+> npm install -g @openai/codex
+> ```
+> Then check: `codex --version` should print a version number.
+
 ```bash
 # 1. One-time install (skip if done)
 npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
-npx playwright install chromium
 
 # 2. Register the server (note the -- separator)
 codex mcp add strudel -- live-coding-music-mcp
@@ -15,6 +21,13 @@ codex mcp add strudel -- live-coding-music-mcp
 # 3. Confirm
 codex mcp list           # expect: strudel ... enabled
 ```
+
+> [!TIP]
+> **You can skip the browser install.** The server usually downloads Chromium automatically
+> the first time it runs. If the agent says the browser is missing, run:
+> ```bash
+> node "$(npm root -g)/@williamzujkowski/live-coding-music-mcp/node_modules/playwright/cli.js" install chromium --no-shell
+> ```
 
 Alternative to step 2 — edit `~/.codex/config.toml` (or a project-scoped
 `.codex/config.toml`) directly:
@@ -100,8 +113,8 @@ codex mcp list         # expect: strudel ... enabled
 > startup_timeout_sec = 60
 > ```
 
-> ⚠️ Researched from docs + issue threads on 2026-08-20, **not yet verified on real
-> Windows hardware.**
+> ✅ Smoke-tested on Windows (2026-08-24): Codex registered with the absolute-`node`
+> form and ran MAKE prompts successfully.
 
 ## Reference
 
