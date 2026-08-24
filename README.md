@@ -22,7 +22,12 @@ flowchart LR
 
 ## Quick start
 
-**Prerequisite: Node.js 22+** (`npm` and `npx` come bundled — nothing extra to install).
+**Prerequisites:**
+- **Node.js 22+** (`npm` and `npx` come bundled — nothing extra to install).
+- **Claude Code** or **Codex** CLI — install from the
+  [Claude Code](https://docs.anthropic.com/en/docs/claude-code/installation) or
+  [Codex](https://github.com/openai/codex) official pages, or via `npm install -g @anthropics/claude-code`
+  / `npm install -g @openai/codex`.
 
 | Platform | Get Node 22+ |
 | --- | --- |

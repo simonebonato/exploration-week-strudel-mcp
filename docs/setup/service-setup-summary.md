@@ -15,7 +15,7 @@ Every service, both platforms, one page.
 | --- | --- | --- |
 | **Node.js 22+** | `brew install node@22` or nvm | [nodejs.org](https://nodejs.org) installer, `winget install OpenJS.NodeJS.LTS`, or nvm-windows |
 | Check | `node -v` (need v22+) | `node -v` in PowerShell |
-| **Claude Code or Codex CLI** | `npm install -g @anthropics/claude-code`<br/>or `npm install -g @openai/codex` | `npm install -g @anthropics/claude-code`<br/>or `npm install -g @openai/codex` |
+| **Claude Code** or **Codex** CLI | `npm install -g @anthropics/claude-code`<br/>or `npm install -g @openai/codex`<br/>(or use the [official Claude Code](https://docs.anthropic.com/en/docs/claude-code/installation)<br/>/ [Codex](https://github.com/openai/codex) install page) | same |
 | Check | `claude --version` or `codex --version` | `claude --version` or `codex --version` in PowerShell |
 | **Audio** | speakers/headphones | speakers/headphones |
 

@@ -108,13 +108,15 @@ layout: iframe-right
 url: https://strudel.cc/
 ---
 
-# Type. Press play.
+# Type. Press Start.
 
 <div class="pt-4">
 
-**Ctrl/Cmd + Enter** → play
+Click **Start** to play.
 
-**Ctrl/Cmd + .** → stop
+Change something, then click **Update** to hear it.
+
+Click **Stop** when you want silence.
 
 </div>
 
@@ -124,12 +126,28 @@ That's the entire interface.
 
 </div>
 
+<details class="pt-8 text-sm opacity-80 text-left">
+  <summary class="cursor-pointer font-semibold">What do these letters and labels mean?</summary>
+  <div class="pt-3 space-y-1">
+    <ul class="list-disc pl-5 space-y-1">
+      <li><b>BANK</b> — the menu that picks which set of sounds to use.</li>
+      <li><b>TR-909</b> — a classic Roland drum machine; the default electronic drum sound.</li>
+      <li><b>BD</b> — bass drum / kick.</li>
+      <li><b>SD</b> — snare drum.</li>
+      <li><b>HH</b> — closed hi-hat.</li>
+      <li><b>OH</b> — open hi-hat.</li>
+      <li><b>CP</b> — clap.</li>
+      <li><b>sound("...")</b> — the function that turns the pattern into sound.</li>
+    </ul>
+  </div>
+</details>
+
 <!--
 ⚠️ NAVIGATION: your clicker will NOT work while focus is in the Strudel iframe.
 Click THIS column (the text side) to get arrow keys back, or click the on-screen arrows.
 
-Do this: type sound("bd*4") into the REPL on the right, Ctrl+Enter.
-Make a noise BEFORE explaining anything. Then Ctrl+. to stop.
+Do this: type sound("bd*4") into the REPL on the right, then click Start.
+Make a noise BEFORE explaining anything. Then click Stop.
 -->
 
 ---
@@ -175,6 +193,21 @@ sound("bd ~ sd ~")    // ~ is a rest. Silence takes a slot too.
 
 <StrudelPad preset="basics" />
 
+<details class="pt-4 text-sm opacity-80 text-left">
+  <summary class="cursor-pointer font-semibold">What do these mean?</summary>
+  <div class="pt-3 space-y-1">
+    <ul class="list-disc pl-5 space-y-1">
+      <li><b>bd</b> — bass drum / kick.</li>
+      <li><b>sd</b> — snare drum.</li>
+      <li><b>hh</b> — hi-hat.</li>
+      <li><b>cp</b> — clap.</li>
+      <li><b>*4</b> — play four times inside one loop.</li>
+      <li><b>~</b> — rest: silence that still takes up a slot.</li>
+      <li><b>sound("...")</b> — the function that turns the pattern into a sound.</li>
+    </ul>
+  </div>
+</details>
+
 <!--
 Play each one from the pad, in order. Ask "what happens if I add one more?"
 BEFORE you click the next chip. That question is the whole lesson.
@@ -204,6 +237,19 @@ Don't worry about the second one. Just know that<br>
 
 <StrudelPad preset="more" />
 
+<details class="pt-4 text-sm opacity-80 text-left">
+  <summary class="cursor-pointer font-semibold">What do these mean?</summary>
+  <div class="pt-3 space-y-1">
+    <ul class="list-disc pl-5 space-y-1">
+      <li><b>[ bd sd ]</b> — brackets squeeze two sounds into one slot.</li>
+      <li><b>(3,8)</b> — Euclidean rhythm: 3 hits spread evenly over 8 slots.</li>
+      <li><b>(5,8)</b> — same idea, 5 hits over 8 slots — a busier groove.</li>
+      <li><b>stack(...)</b> — layer multiple patterns so they play at the same time.</li>
+      <li><b>.gain(0.4)</b> — make that pattern quieter (40% volume).</li>
+    </ul>
+  </div>
+</details>
+
 <!--
 bd(3,8) then bd(5,8) back to back — same idea, different feel. Don't explain the
 maths; let them hear that one number changed the groove.
@@ -230,6 +276,18 @@ Three lines. That's music.
 </div>
 
 <StrudelPad preset="layers" />
+
+<details class="pt-4 text-sm opacity-80 text-left">
+  <summary class="cursor-pointer font-semibold">What do these mean?</summary>
+  <div class="pt-3 space-y-1">
+    <ul class="list-disc pl-5 space-y-1">
+      <li><b>stack(...)</b> — plays all the patterns inside it at the same time.</li>
+      <li><b>bd*4</b> — kick drum, four times per loop.</li>
+      <li><b>~ sd ~ sd</b> — rest, snare, rest, snare — snare on beats 2 and 4.</li>
+      <li><b>hh*8</b> — hi-hat, eight times per loop.</li>
+    </ul>
+  </div>
+</details>
 
 <!--
 Click the chips left to right, letting each one loop for a few seconds. This is the
@@ -259,6 +317,18 @@ There are dozens more — `.room()` reverb, `.lpf()` darker, `.delay()` echo.
 </div>
 
 <StrudelPad preset="knob" />
+
+<details class="pt-4 text-sm opacity-80 text-left">
+  <summary class="cursor-pointer font-semibold">What do these mean?</summary>
+  <div class="pt-3 space-y-1">
+    <ul class="list-disc pl-5 space-y-1">
+      <li><b>.gain(0.4)</b> — set the volume to 40% (quieter).</li>
+      <li><b>.room(0.5)</b> — add reverb, as if the sound is in a room.</li>
+      <li><b>.lpf(500)</b> — low-pass filter: only frequencies below 500 Hz get through (darker sound).</li>
+      <li><b>stack(...)</b> — layer patterns so they play together.</li>
+    </ul>
+  </div>
+</details>
 
 <!--
 First two chips back to back = the whole slide. The room hears one number fix a mix.

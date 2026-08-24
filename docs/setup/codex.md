@@ -5,7 +5,8 @@
 ## Setup in 3 steps
 
 > [!IMPORTANT]
-> This guide assumes **Codex is already installed**. If not:
+> This guide assumes **Codex is already installed**. If not, install it from the
+> [official page](https://github.com/openai/codex), or run:
 > ```bash
 > npm install -g @openai/codex
 > ```

@@ -30,8 +30,9 @@ Then: *"Add a slide after the three-modes one showing the seed prompts."*
 
 Slides 8–11 — *Build it up · Two more · Layers · One knob* — each carry a `<StrudelPad>`:
 a small Strudel REPL docked into the slide, so you can play the examples **without leaving
-the deck**. Click **▶ Live Strudel** bottom-right, then click a chip to load and play that
-snippet. The editor is live — type in it, `Ctrl/Cmd+Enter` to re-run, `Ctrl/Cmd+.` to stop.
+the deck**. Click **▶ Live Strudel** bottom-right: it opens the pad **and auto-plays the
+first snippet**. Click any chip to switch snippets. The editor is live — edit it, then click
+▶ to play or ■ to stop.
 
 Snippets live in [`components/strudelPresets.js`](components/strudelPresets.js), one named
 set per slide. To add a set: add a key there, then `<StrudelPad preset="yourkey" />` in

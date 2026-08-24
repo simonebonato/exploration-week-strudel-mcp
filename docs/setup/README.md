@@ -32,10 +32,10 @@ flowchart LR
 
 ## Step 1 — Prerequisites (all clients)
 
-| Need | Why | Check |
+| Need | Why | Check / install |
 | --- | --- | --- |
 | **Node.js 22+**, npm 10+ | runs the MCP server | `node -v` |
-| **Claude Code or Codex CLI** | the agent that talks to the server | `claude --version` or `codex --version` |
+| **Claude Code** or **Codex** CLI | the agent that talks to the server | [Claude Code install](https://docs.anthropic.com/en/docs/claude-code/installation) · [Codex install](https://github.com/openai/codex) — then `claude --version` or `codex --version` |
 | **Speakers / headphones** | to hear it | — |
 | Internet (first run) | loads strudel.cc | works offline after first load (PWA) |
 

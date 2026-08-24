@@ -1,0 +1,17 @@
+/* Allow vertical scrolling when slide content overflows.
+   The default theme hides overflow, which cuts off legends and long code blocks. */
+.slidev-slide-content {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+/* Hide the scrollbar visually so it doesn't clash with the deck aesthetics,
+   but keep the scroll behaviour. */
+.slidev-slide-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.slidev-slide-content::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.4);
+  border-radius: 3px;
+}

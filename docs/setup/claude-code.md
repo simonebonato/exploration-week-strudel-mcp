@@ -11,7 +11,8 @@
 ## Setup in 3 steps
 
 > [!IMPORTANT]
-> This guide assumes **Claude Code is already installed**. If not:
+> This guide assumes **Claude Code is already installed**. If not, install it from the
+> [official page](https://docs.anthropic.com/en/docs/claude-code/installation), or run:
 > ```bash
 > npm install -g @anthropics/claude-code
 > ```

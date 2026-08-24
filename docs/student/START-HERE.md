@@ -46,14 +46,14 @@ you're good.** If it's lower, or you get an error, install again from the link a
 You'll ask the music server for sounds through an AI agent. For this workshop we support
 **Claude Code** and **Codex**. Install **one** of them:
 
-| Agent | Install command |
-| --- | --- |
-| **Claude Code** | `npm install -g @anthropics/claude-code` |
-| **Codex** | `npm install -g @openai/codex` |
+| Agent | Quick install (npm) | Official install page |
+| --- | --- | --- |
+| **Claude Code** | `npm install -g @anthropics/claude-code` | [docs.anthropic.com](https://docs.anthropic.com/en/docs/claude-code/installation) |
+| **Codex** | `npm install -g @openai/codex` | [github.com/openai/codex](https://github.com/openai/codex) |
 
-In the same terminal window, type the command for the agent you chose and press Enter.
-You'll be told before the workshop which one to use; if you aren't sure, pick **Claude
-Code**.
+In the same terminal window, type the command for the agent you chose and press Enter, or
+follow the official install page above. You'll be told before the workshop which one to
+use; if you aren't sure, pick **Claude Code**.
 
 **Check it worked.** Type:
 

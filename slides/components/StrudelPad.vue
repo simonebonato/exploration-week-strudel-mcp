@@ -32,6 +32,7 @@ const open = ref(false)
 const loading = ref(false)
 const playing = ref(false)
 const active = ref(-1)
+const error = ref('')
 const host = ref(null)
 const el = shallowRef(null)
 
@@ -41,29 +42,46 @@ const initial = props.code || items.value[0]?.code || 'sound("bd*4")'
 async function ensureEditor() {
   if (el.value) return el.value
   loading.value = true
-  // client-only: pulls in the whole Strudel engine, so never at slide-mount time
-  await import('@strudel/repl')
-  await nextTick()
-  // built imperatively so Vue never tries to resolve <strudel-editor> as a component
-  const node = document.createElement('strudel-editor')
-  node.setAttribute('code', initial)
-  host.value.appendChild(node)
-  // .editor is assigned in connectedCallback, which runs on upgrade
-  for (let i = 0; i < 100 && !node.editor; i++)
-    await new Promise(r => setTimeout(r, 20))
-  el.value = node
-  loading.value = false
-  return node
+  error.value = ''
+  try {
+    // client-only: pulls in the whole Strudel engine, so never at slide-mount time
+    await import('@strudel/repl')
+    await nextTick()
+    // built imperatively so Vue never tries to resolve <strudel-editor> as a component
+    const node = document.createElement('strudel-editor')
+    node.setAttribute('code', initial)
+    host.value.appendChild(node)
+    // .editor is assigned in connectedCallback, which runs on upgrade
+    for (let i = 0; i < 100 && !node.editor; i++)
+      await new Promise(r => setTimeout(r, 20))
+    if (!node.editor) throw new Error('Strudel editor failed to load')
+    el.value = node
+  } catch (e) {
+    error.value = 'Could not load Strudel. Check your network and reload the slide.'
+    console.error(e)
+  } finally {
+    loading.value = false
+  }
+  return el.value
 }
 
 async function toggleOpen() {
   open.value = !open.value
-  if (open.value) await ensureEditor()
-  else stop()
+  if (open.value) {
+    const node = await ensureEditor()
+    if (node && items.value.length) {
+      active.value = 0
+      node.editor?.setCode(items.value[0].code)
+      await play()
+    }
+  } else {
+    stop()
+  }
 }
 
 async function load(snippet, i) {
   const node = await ensureEditor()
+  if (!node) return
   active.value = i
   node.editor?.setCode(snippet.code)
   await play()
@@ -71,6 +89,7 @@ async function load(snippet, i) {
 
 async function play() {
   const node = await ensureEditor()
+  if (!node) return
   await node.editor?.evaluate()   // first call waits on prebake (needs network)
   playing.value = true
 }
@@ -95,6 +114,7 @@ onBeforeUnmount(stop)
         <button
           v-for="(s, i) in items" :key="i"
           class="pad-chip" :class="{ 'pad-chip-on': active === i }"
+          :disabled="loading"
           @click="load(s, i)"
         >{{ s.label }}</button>
 
@@ -108,8 +128,9 @@ onBeforeUnmount(stop)
       <div ref="host" class="pad-editor" />
 
       <div class="pad-hint">
-        <span v-if="loading">loading Strudel…</span>
-        <span v-else>edit freely · <b>Ctrl/Cmd+Enter</b> play · <b>Ctrl/Cmd+.</b> stop · click the slide to get arrow keys back</span>
+        <span v-if="loading">loading Strudel (needs network on first open)…</span>
+        <span v-else-if="error" class="text-red-300">{{ error }}</span>
+        <span v-else>edit freely · click ▶ to play · click ■ to stop · click the slide to get arrow keys back</span>
       </div>
     </div>
   </div>
