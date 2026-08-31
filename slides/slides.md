@@ -520,6 +520,97 @@ The third one is the one that's still useful tomorrow.
 
 ---
 
+# Keep these questions with you
+
+<div class="pt-2 text-lg opacity-80">
+While you make your track, notice who is making the decisions.
+</div>
+
+<div class="grid grid-cols-2 gap-8 pt-6 text-sm">
+<div class="space-y-3">
+
+### Is it yours?
+
+> When you finish, whose track will it be — **yours**, **its**, or **both**?
+
+> Notice one thing in it that was **your** decision.
+
+> Could you explain **one line** of it to the person next to you?
+
+</div>
+<div class="space-y-3">
+
+### Would you sign it?
+
+> Would you put your name on it and show it to someone?
+
+> If yes — what will make it yours?<br>
+> If no — what will be missing?
+
+</div>
+</div>
+
+<div v-click class="pt-8 text-center opacity-70">
+
+There's no right answer. **"It's mostly the agent's"** is a real answer.
+
+</div>
+
+<!--
+Show this immediately before open exploration. Don't ask for answers yet — these are
+questions to carry into the work. Say: "Notice your answers while you make something."
+
+During the showcase, listen for people who cannot name a single decision of their own.
+That's the thesis of the whole week, live in the room.
+-->
+
+---
+
+# Notice how it feels
+
+<div class="grid grid-cols-2 gap-8 pt-4 text-sm">
+<div class="space-y-3">
+
+### While you work
+
+> Does it feel like **playing**, or like **waiting**?
+
+> When do you feel most **in control**? When least?
+
+> Does it hand you something you **didn't expect** and like?
+
+> If you get **bored**, what are you doing?
+
+</div>
+<div class="space-y-3">
+
+### The directing
+
+> What does it get **wrong** — and can you tell that it has?
+
+> Do you accept anything you **don't understand**?
+
+> What do you ask for **differently** next time?
+
+</div>
+</div>
+
+<div v-click class="pt-6 text-center text-xl">
+
+Same questions at the Blender station. Bring your answers.
+
+</div>
+
+<!--
+Point out two or three questions; don't march through all seven and don't collect answers.
+They are lenses for the next part, not a reflection exercise afterwards.
+
+"If you get bored, what are you doing?" is the honest one — it tells you whether the
+seeds are ambitious enough. Note what you observe while circulating.
+-->
+
+---
+
 # If you don't know what to make
 
 <div class="grid grid-cols-2 gap-6 pt-4 text-sm">

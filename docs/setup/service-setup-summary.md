@@ -15,8 +15,8 @@ Every service, both platforms, one page.
 | --- | --- | --- |
 | **Node.js 22+** | `brew install node@22` or nvm | [nodejs.org](https://nodejs.org) installer, `winget install OpenJS.NodeJS.LTS`, or nvm-windows |
 | Check | `node -v` (need v22+) | `node -v` in PowerShell |
-| **Claude Code** or **Codex** CLI | `npm install -g @anthropics/claude-code`<br/>or `npm install -g @openai/codex`<br/>(or use the [official Claude Code](https://docs.anthropic.com/en/docs/claude-code/installation)<br/>/ [Codex](https://github.com/openai/codex) install page) | same |
-| Check | `claude --version` or `codex --version` | `claude --version` or `codex --version` in PowerShell |
+| **Claude Desktop** (primary) | [Download Claude Desktop](https://claude.ai/download), open once and sign in | same |
+| Alternative CLI | `npm install -g @anthropics/claude-code` or `npm install -g @openai/codex` | same |
 | **Audio** | speakers/headphones | speakers/headphones |
 
 ## 1. One-time install (same commands on both platforms)
@@ -127,9 +127,12 @@ command = "live-coding-music-mcp"
 
 Full guide: [codex.md](./codex.md).
 
-### Claude Desktop (optional alternative to Claude Code)
+### Claude Desktop (primary student client)
 
-Edit the config, then restart the app:
+Claude Desktop requires the absolute path to both `node` and the server entry point. A bare
+`live-coding-music-mcp` command does not work in the app's minimal launch environment.
+Students should follow [the beginner guide](../student/claude-desktop.md); this is the
+reference form.
 
 | | Path |
 | --- | --- |
@@ -137,8 +140,18 @@ Edit the config, then restart the app:
 | Windows 🪟 | `%APPDATA%\Claude\claude_desktop_config.json` |
 
 ```json
-{ "mcpServers": { "strudel": { "command": "live-coding-music-mcp" } } }
+{
+  "mcpServers": {
+    "strudel": {
+      "command": "/absolute/path/to/node",
+      "args": ["/absolute/path/to/@williamzujkowski/live-coding-music-mcp/dist/index.js"]
+    }
+  }
+}
 ```
+
+Fully quit and reopen Claude Desktop after saving. A dead Chromium session is recovered
+the same way: fully quit the app, reopen it and start a new conversation.
 
 ## 3. Pre-demo sanity checklist (per machine)
 
@@ -146,8 +159,9 @@ Edit the config, then restart the app:
 2. `live-coding-music-mcp` resolves on PATH ✔
 3. Client shows the server connected/enabled ✔
 4. Fresh session: *"Initialize Strudel and play a kick"* → **Chromium opens + sound** ✔
-5. Browser window died mid-demo? → **reconnect the MCP server in your client** (`/mcp` in
-   Claude Code). Do *not* rely on asking the agent to initialize again — verified twice on
+5. Browser window died mid-demo? → **reconnect the MCP server in your client**. In Claude
+   Desktop, fully quit/reopen and start a new conversation; in Claude Code use `/mcp`.
+   Do *not* rely on asking the agent to initialize again — verified twice on
    2026-08-21 that `init` returns `"Already initialized"` and relaunches nothing.
    More: [recovery-playbook.md](./recovery-playbook.md).
 
@@ -156,4 +170,5 @@ Edit the config, then restart the app:
 - [ ] Node 22+ installs; `live-coding-music-mcp` lands on PATH.
 - [ ] The bundled-playwright `install chromium --no-shell` succeeds; Chromium launches visibly.
 - [ ] Claude Code **and** Codex each connect using the **absolute-`node`** form.
+- [ ] Claude Desktop loads `strudel`, lists its tools and launches Chromium.
 - [ ] Audio is actually **audible** from the Chromium window (not just `isSilent: false`).

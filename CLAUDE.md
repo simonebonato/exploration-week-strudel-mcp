@@ -23,7 +23,8 @@ the week's other station (Blender), which is why it earns explicit teaching time
 - **Timeline:** Exploration Week workshop, **early September 2026**. ~2 hours.
 - **Sibling station:** Blender (someone else's). Same underlying lesson, different software.
 - **Format:** hands-on — students install and drive the MCP from their **own laptops
-  (mixed Windows/macOS)**, with pre-work install before the day.
+  (mixed Windows/macOS)**. Installation is guided live during the workshop, not assigned
+  in advance. (updated 2026-08-31)
 - **Funding (decided 2026-08-20):** free tiers proved unworkable. **FHNW provides paid
   plans.** This supersedes the earlier "nobody must pay" goal.
 
@@ -167,8 +168,8 @@ need the expensive tier — useful input for the FHNW plan decision.
 ✅ **Closed 2026-08-20 — effort level is not a risk.** The worry was that everything had
 been run at *high* effort, a per-user setting students won't have raised. Test 2b re-ran the
 core reggae demo on Sonnet at **low** effort — below the Claude Code default — and it worked
-perfectly. **So: no extra setup step, no "raise your effort" line in the pre-work email or
-`START-HERE.md`, and no argument for a higher tier on these grounds.**
+perfectly. **So: no extra setup step, no "raise your effort" line in the student guide,
+and no argument for a higher tier on these grounds.**
 
 ## Install: what can and cannot be removed (researched 2026-08-20)
 
@@ -221,12 +222,14 @@ browser cache can go stale under you.
 ## Supported clients (narrowed 2026-08-20)
 
 FHNW funds the plans, so students no longer arrive with "whatever free thing they had."
-**Two supported clients**; the point is that the server doesn't care which.
+**Three supported clients. Claude Desktop is the primary student path**; the point is that
+the server doesn't care which client launches it.
 
 | Client | Status | Command / config |
 | --- | --- | --- |
 | **Claude Code** | ✅ supported | `claude mcp add strudel live-coding-music-mcp` |
 | **Codex** | ✅ supported | `codex mcp add strudel -- live-coding-music-mcp` → `~/.codex/config.toml` |
+| **Claude Desktop** | ✅ adopted 2026-08-31; primary student client | Student guide: `docs/student/claude-desktop.md`. Manual setup uses a terminal once, then the workshop runs entirely in the app. Requires **absolute `node` + absolute `dist/index.js` on both OSes** because the app's launch environment has no shell `PATH`. Student install + audible output verified end to end on macOS (2026-08-31); Windows remains untested. `claude.ai` cannot replace it: remote connectors would play audio in the wrong room. |
 | ~~Antigravity CLI~~ | ❌ **dropped 2026-08-20** | Did not survive testing; see presenter notes. Doc archived. |
 | ~~Gemini CLI~~ | ❌ dropped | Deprecated for free tier 2026-06-18. |
 
@@ -325,6 +328,8 @@ Figma Slides (no arbitrary web embed), Tome (dead — shut down 2025-04-30), Plu
 - Claude Code: `strudel` server **connected** ✅; audio proven end-to-end (`analyze`
   confirmed sound, 2026-07-01).
 - Codex 0.137.0: `strudel` registered, `enabled` ✅ (live audio not yet tested).
+- Claude Desktop: student installation guide verified end to end on macOS, including
+  audible Strudel output (2026-08-31). Windows pending.
 - **Windows smoke-tested (2026-08-24):** install, absolute-`node` registration, and MAKE
   prompts verified on real Windows hardware for both Claude Code and Codex.
 
@@ -333,10 +338,11 @@ Figma Slides (no arbitrary web embed), Tome (dead — shut down 2025-04-30), Plu
 | Path | What | Audience |
 | --- | --- | --- |
 | `AGENTS.md` / `CLAUDE.md` | Durable facts (byte-identical apart from the title — keep in sync) | agents |
-| `docs/student/START-HERE.md` | **The single student front door.** One page, one URL | 🎓 students |
+| `docs/student/START-HERE.md` | **The student front door** | 🎓 students |
+| `docs/student/claude-desktop.md` | Beginner setup for the primary student client | 🎓 students |
 | `docs/run-of-show.md` | **What you do on the day**, minute by minute | presenter |
 | `docs/rehearsal.md` | **How to test it yourself** — 9 tests with pass criteria | presenter |
-| `docs/student/pre-work-email.md` | Draft email to send ~1 week ahead | presenter |
+| `docs/student/pre-work-email.md` | Student note: what to bring; install together | 🎓 students |
 | `docs/strudel/prompts.md` | **Prompt library** — the three modes | 🎓 students |
 | `docs/strudel/primer.md` | Part 1 = the 15-min teaching arc · Part 2 = reference | presenter |
 | `docs/strudel/demo-reggae.md` | **The core demo script** — prompts, what to say in each pause, and the 4 tested fallback URLs | presenter |
@@ -356,7 +362,8 @@ and vendor failure notes. Keep those out of anything published, or move them pri
 2. Reuse the existing MCP server, don't build our own (revisit only if it blocks us). (2026-07-01)
 3. Play & control live (browser automation), not just generate code text. (2026-07-01)
 4. Pin the MCP server to v4.0.0 until re-verified. (2026-08-18)
-5. Hands-on format: students install (pre-work) and drive from their own mixed-OS laptops. (2026-08-18)
+5. Hands-on format: students install during a guided setup and drive from their own
+   mixed-OS laptops. Nothing is installed in advance. (updated 2026-08-31)
 6. **Reframe: the subject is agent literacy through a creative domain, not MCP and not
    music.** MCP is taught as the mechanism that transfers to Blender. (2026-08-20)
    *Supersedes the old "the real subject is MCP + agents, not music."*
@@ -367,8 +374,10 @@ and vendor failure notes. Keep those out of anything published, or move them pri
    *Supersedes decision 6 of 2026-08-18.*
 8. **FHNW pays for the plans.** Free tiers and the local-model (Ollama/Goose) safety net
    are both dropped. (2026-08-20)
-9. **Two supported clients: Claude Code + Codex.** Antigravity dropped after failing
-   testing. The "three vendors" hard requirement is retired. (2026-08-20)
+9. **Three supported clients: Claude Desktop, Claude Code + Codex.** Claude Desktop was
+   adopted as the primary student path on 2026-08-31; the CLIs remain supported
+   alternatives. Antigravity was dropped after testing. The "three vendors" hard
+   requirement is retired. (updated 2026-08-31)
 10. **Teach the three levels of machine perception**, not the false "the LLM can't hear
     it." (2026-08-20)
 11. **Prompt library = three modes: MAKE / TEACH ME / GIVE ME OPTIONS.** (2026-08-20)

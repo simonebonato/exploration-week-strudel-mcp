@@ -1,58 +1,23 @@
-# Pre-work email — draft
+# What to bring for the workshop 🎧
 
-Send **~1 week before** the session. Adjust the agent name once FHNW confirms which plan
-it's buying, and drop in the real link before sending.
+You will make music by typing requests in plain English to an AI agent. No coding or music
+experience is needed.
 
-> [!NOTE]
-> Presenter checklist before sending:
-> - [ ] FHNW has confirmed which agent/plan students get, and accounts exist
-> - [ ] `START-HERE.md` link is live and opens without a GitHub account
-> - [x] Windows smoke-test done (2026-08-24) — install, registration, and MAKE prompts work
+We will install Claude Desktop and the music connection **together during the workshop**.
+Do not install anything beforehand.
 
----
+## Bring these
 
-**Subject:** Before Wednesday's music session — 10 minutes of setup 🎧
-
-Hi all,
-
-On Wednesday you'll be making music by typing requests in plain English to an AI agent.
-No coding or music experience needed.
-
-**There's about 10 minutes of setup, and I need you to do it at home.** It involves three
-installs. Twenty people downloading them simultaneously on room wifi is a bad start to
-a session.
-
-👉 **Everything is on one page here: [LINK]**
-
-Work through the "Before the workshop" section. It's five steps and there's a check at the
-end so you know it worked. If you get stuck, **stop and come anyway** — the first 15
-minutes are set aside for exactly that. Just tell me where it broke.
-
-**Please bring:**
-
-- 🎧 **Headphones** — otherwise it's twenty laptops playing different music at once
+- 🎧 **Headphones** — otherwise it is twenty laptops playing different music at once
+- 💻 Your charged **Mac or Windows laptop**
+- 🔑 The password you need to install software on your laptop
 - 🖱️ **A mouse** — mainly for the Blender session
-- 💻 Your laptop, charged
 
-**What you'll actually do:** you'll ask an AI to teach you what makes reggae sound like
-reggae, and then build one with you, one instrument at a time. Then you'll do the same with
-whatever music you actually like. At the end, anyone who wants to can play theirs out loud
-— completely optional.
+## The guide we will use
 
-See you Wednesday,
-Simone
+We will follow [the Claude Desktop setup guide](./claude-desktop.md) together and finish
+with a sound check. If a step fails, stop there and ask for help.
 
----
-
-## Follow-up, day before (optional, short)
-
-**Subject:** Tomorrow — did the setup work?
-
-Quick check: did you get to the point where a browser opened by itself and played a kick
-drum?
-
-- **Yes** → perfect, see you tomorrow. Bring headphones.
-- **No / didn't try** → come anyway, arrive on time, we'll fix it in the first 15 minutes.
-  Reply with the error if you have one and I'll look at it tonight.
-
-Setup page again: [LINK]
+After setup, you will ask an AI to teach you what makes reggae sound like reggae and build
+it with you, one instrument at a time. Then you can do the same with whatever music you
+actually like.

@@ -1,7 +1,7 @@
 # Start Here 🎧
 
-Everything you need for the Strudel session, on one page. You don't need to know how to
-code, how to make music, or what any of this is yet.
+This is the front door for the Strudel session. You don't need to know how to code, how to
+make music, or what any of this is yet.
 
 **What you're going to do:** type a request in plain English to an AI agent, and a browser
 will start making music. Then you'll take over and make something of your own.
@@ -12,12 +12,24 @@ will start making music. Then you'll take over and make something of your own.
 > line the moment it's typed. That's Strudel.
 
 > [!IMPORTANT]
-> **Do the "Before the workshop" bit at home.** It takes ~10 minutes and involves three
-> installs. Doing it in the room, on room wifi, with 20 other people, is much less fun.
+> **We will install everything together during the workshop.** Bring your laptop and follow this
+> page during the guided setup. You do not need to install anything beforehand.
 
 ---
 
-## Before the workshop (~10 min, at home)
+## Guided setup (~15–20 min)
+
+For this workshop, use the **Claude Desktop app**. Follow the beginner setup guide:
+
+> 🎧 **[Set up Strudel with Claude Desktop](./claude-desktop.md)**
+
+It explains every step, including what a terminal is. We will all work through it together.
+Come back here after the final check opens a Chromium window and plays a kick drum.
+
+<details>
+<summary><strong>Using Claude Code or Codex instead?</strong></summary>
+
+The command-line clients remain supported. Follow the alternative setup below.
 
 ### 1. Install Node.js 22 or newer
 
@@ -147,6 +159,8 @@ A browser window should open by itself and you should hear a kick drum.
 you interact with them. Still nothing? Jump to [Nothing works](#nothing-works) below, and
 bring it to the workshop; we'll fix it in the first 15 minutes.
 
+</details>
+
 ---
 
 ## Bring with you
@@ -227,7 +241,7 @@ Work down this list. Most problems are the first three.
 | --- | --- |
 | **No sound**, but the browser is open and something looks like it's playing | **Click once inside the browser window.** Browsers mute pages until you interact with them. Then check your volume and that headphones are actually selected. |
 | The agent changed the code but the **music didn't change** | Press the **`update`** button at the top right of strudel.cc (or Ctrl/Cmd+Enter in the editor). |
-| The browser window **closed or crashed**, and now every request fails | **Don't ask the agent to initialize again — that won't fix it**, and the agent will happily tell you everything is fine. Reconnect the server instead: in Claude Code type **`/mcp`** and reconnect; in Codex, quit and start a fresh session. *(Try not to close that browser window in the first place — the agent can't reopen it.)* |
+| The browser window **closed or crashed**, and now every request fails | **Don't ask the agent to initialize again — that won't fix it**, and the agent will happily tell you everything is fine. In Claude Desktop, fully quit and reopen the app, then start a new conversation. In Claude Code, type **`/mcp`** and reconnect; in Codex, quit and start a fresh session. *(Try not to close that browser window in the first place — the agent can't reopen it.)* |
 | Agent says it **can't find the tools** / server not connected | Close your agent completely and start a fresh session — tools only load at startup. If still missing, re-run step 3. |
 | **Windows:** server won't start, or "timed out" | You probably registered the short name. Re-register using the `node "C:\...\dist\index.js"` form in step 3 — that's exactly what it's for. |
 | Everything is **weirdly slow or two browser windows** appeared | You have two agents running. Quit one — each one starts its own browser. |

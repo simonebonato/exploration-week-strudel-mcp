@@ -15,6 +15,7 @@ flowchart LR
     subgraph agents["Pick ONE agent"]
         CC["Claude Code<br/>(Anthropic)"]
         CX["Codex<br/>(OpenAI)"]
+        CD["Claude Desktop<br/>(primary student app)"]
     end
     agents -->|"MCP (stdio)"| S["live-coding-music-mcp"]
     S -->|Playwright| B["Chromium → strudel.cc"]
@@ -35,7 +36,7 @@ flowchart LR
 | Need | Why | Check / install |
 | --- | --- | --- |
 | **Node.js 22+**, npm 10+ | runs the MCP server | `node -v` |
-| **Claude Code** or **Codex** CLI | the agent that talks to the server | [Claude Code install](https://docs.anthropic.com/en/docs/claude-code/installation) · [Codex install](https://github.com/openai/codex) — then `claude --version` or `codex --version` |
+| **Claude Desktop** (recommended), Claude Code or Codex | the agent that talks to the server | Students: [Claude Desktop setup](../student/claude-desktop.md) · alternatives: [Claude Code](./claude-code.md) or [Codex](./codex.md) |
 | **Speakers / headphones** | to hear it | — |
 | Internet (first run) | loads strudel.cc | works offline after first load (PWA) |
 
@@ -71,13 +72,15 @@ npm install -g @williamzujkowski/live-coding-music-mcp@4.0.0
 
 ## Step 3 — Pick your agent
 
-Two supported clients (narrowed 2026-08-20 — FHNW funds the plans, so students no longer
-arrive with whatever free tier they happened to have).
+Three supported clients. **Claude Desktop is the primary student path**; Claude Code and
+Codex remain supported alternatives. FHNW funds the plans, so students no longer arrive
+with whatever free tier they happened to have.
 
 | Vendor | Guide | Status |
 | --- | --- | --- |
 | Anthropic | **[Claude Code](./claude-code.md)** | ✅ verified, audio proven |
 | OpenAI | **[Codex](./codex.md)** | ✅ registered — live audio pending |
+| Anthropic | **[Claude Desktop](../student/claude-desktop.md)** | ✅ adopted — student install + audible output verified on macOS; Windows pending |
 
 Dropped: Antigravity CLI and Gemini CLI → [`archive/`](./archive/).
 

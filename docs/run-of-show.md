@@ -125,8 +125,12 @@ If it stalls: paste a fallback, say *"I'll take this one"*, keep talking. Nobody
 
 ## 1:00–1:45 — Open exploration
 
-Say: *"Now do that with a genre you care about."* Put [`strudel/prompts.md`](strudel/prompts.md)
-on screen (deck slides 26–29) and get out of the way.
+First show deck slides **21–22**. Frame them as questions to notice during the work, not
+questions to answer now. Point out two or three: *Whose decisions are these? Does this feel
+like playing or waiting? Can you tell when it gets something wrong?*
+
+Then say: *"Now do that with a genre you care about."* Continue to the prompt seeds and
+the live Strudel slide (deck slides **23–25**) and get out of the way.
 
 **Circulate.** What you're looking for:
 
@@ -139,7 +143,7 @@ on screen (deck slides 26–29) and get out of the way.
 | Bored | Escalate: *"Make it get gradually stranger over two minutes."* |
 | Curious about the plumbing | `npx @modelcontextprotocol/inspector live-coding-music-mcp` — show them the raw tool list, let them find one nobody used |
 
-**Around 1:35, give a five-minute warning** so people have something to play.
+**Around 1:40, give a five-minute warning** so people have something to play.
 
 ---
 
@@ -147,6 +151,9 @@ on screen (deck slides 26–29) and get out of the way.
 
 - Headphones off. Room speaker on.
 - Volunteers only. ~30 seconds each. Don't push anyone.
+- **Ask each volunteer one question after they play** — this is the ownership probe, done
+  out loud: *"What in that was your decision?"* or *"What did you have to talk it out of?"*
+  Keep it to one exchange, then move on.
 - **The closing observation:** everyone started from the same handful of seeds and nothing
   sounds alike. That's the point.
 - Then the last slide: *"You just pointed an AI agent at software you'd never used, and made
@@ -158,4 +165,6 @@ on screen (deck slides 26–29) and get out of the way.
 
 - [ ] Note what broke, in [`setup/recovery-playbook.md`](setup/recovery-playbook.md)
 - [ ] Note which prompts landed and which fell flat, in [`strudel/prompts.md`](strudel/prompts.md)
+- [ ] Write down what you heard about the questions introduced before exploration —
+      especially when people were bored and what they were doing
 - [ ] Note actual timings against this plan
