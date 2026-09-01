@@ -126,6 +126,12 @@ That's the entire interface.
 
 </div>
 
+<div class="pt-5 text-sm">
+
+Explore on your own: [**Strudel's official interactive tutorial →**](https://strudel.cc/workshop/first-sounds/)
+
+</div>
+
 <details class="pt-8 text-sm opacity-80 text-left">
   <summary class="cursor-pointer font-semibold">What do these letters and labels mean?</summary>
   <div class="pt-3 space-y-1">
@@ -406,8 +412,8 @@ layout: statement
 
 <div class="p-4 rounded border border-green-500/40">
 <div class="text-3xl">✅</div>
-<div class="text-xl pt-2 font-bold">Measures the sound</div>
-<div class="opacity-70 pt-2 text-sm">Is it playing? How loud? Where's the energy?</div>
+<div class="text-xl pt-2 font-bold">Measures via MCP</div>
+<div class="opacity-70 pt-2 text-sm">Is audio playing? Bass-heavy or treble-heavy?</div>
 </div>
 
 <div class="p-4 rounded border border-red-500/40">

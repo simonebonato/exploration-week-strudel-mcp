@@ -190,6 +190,9 @@ much, you can *read* what the agent writes — which is what lets you direct it.
 Play with it yourself: **[strudel.cc](https://strudel.cc)** — Ctrl/Cmd+Enter plays,
 Ctrl/Cmd+`.` stops.
 
+Prefer a guided start? Try **[Strudel's official interactive tutorial](https://strudel.cc/workshop/first-sounds/)**
+online at your own pace.
+
 ### Three ways to talk to your agent
 
 Most people only use the first one. The third is the one worth keeping.
@@ -257,8 +260,6 @@ this.
 - **[2 Minute Deep Acid in Strudel (from scratch)](https://www.youtube.com/watch?v=HkgV_-nJOuE)**
   by Switch Angel — watch someone build a whole track live from an empty page. Two minutes, and you can
   read most of it after today.
-- **[Strudel's own interactive tutorial](https://strudel.cc/workshop/first-sounds/)** —
-  click through it at your own pace. It's genuinely good.
 - **[Strudel documentation](https://strudel.cc/learn/)** — every function, with a play
   button next to each example.
 - **[awesome-strudel](https://github.com/terryds/awesome-strudel)** — real tracks people
