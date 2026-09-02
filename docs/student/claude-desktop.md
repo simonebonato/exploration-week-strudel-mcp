@@ -56,12 +56,12 @@ finds them and produces the exact setting for you.
 
 Paste this **entire line** into the terminal and press Enter:
 
-For Mac:
+For **Mac**:
 ```text
 node -e 'const path=require("path"),{execSync}=require("child_process");const root=execSync("npm root -g",{encoding:"utf8"}).trim();console.log(JSON.stringify({mcpServers:{strudel:{command:process.execPath,args:[path.join(root,"@williamzujkowski","live-coding-music-mcp","dist","index.js")]}}},null,2))'
 ```
 
-For Windows:
+For **Windows**:
 ```text
 node -e "const path=require('path'),{execSync}=require('child_process');const root=execSync('npm root -g',{encoding:'utf8'}).trim();console.log(JSON.stringify({mcpServers:{strudel:{command:process.execPath,args:[path.join(root,'@williamzujkowski','live-coding-music-mcp','dist','index.js')]}}},null,2))"
 ```
